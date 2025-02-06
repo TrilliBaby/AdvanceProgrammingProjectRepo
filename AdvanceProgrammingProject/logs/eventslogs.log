@@ -1,5 +1,0 @@
-[DEBUG] 2025-02-06 00:36:10.074 LogTest - This is a DEBUG message.
-[INFO ] 2025-02-06 00:36:10.133 LogTest - This is an INFO message.
-[WARN ] 2025-02-06 00:36:10.141 LogTest - This is a WARN message.
-[ERROR] 2025-02-06 00:36:10.141 LogTest - This is an ERROR message.
-[FATAL] 2025-02-06 00:36:10.142 LogTest - This is a FATAL message.
