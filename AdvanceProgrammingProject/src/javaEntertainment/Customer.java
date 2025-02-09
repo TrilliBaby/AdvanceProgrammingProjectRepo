@@ -63,8 +63,7 @@ public class Customer extends Person{
 	           "\n  Date of Birth = " + dOB + 
 	           "\n  Phone Number = " + phoneNumber + 
 	           "\n  Email = " + email + 
-	           "\n  Address = " + address + 
-	           "\n]";
+	           "\n  Address = " + address;
 	}
 
 
