@@ -1,12 +1,12 @@
 package javaEntertainment;
 
 public class Report {
+	
 	private String rId;  
 	private int totalBookings; 
 	private DateTime dateGenerated; 
 	private DateTime timeGenerated;
 	private float totalRevenues;
-	
 	
 
 	public Report()
@@ -71,8 +71,6 @@ public class Report {
 		return "Report [RID=" + rId + ", TotalBookings=" + totalBookings + ", DateGenerated=" + dateGenerated
 				+ ", TimeGenerated=" + timeGenerated + ", TotalRevenues=" + totalRevenues + "]";
 	}
-	
-	
 	
 	
 	
