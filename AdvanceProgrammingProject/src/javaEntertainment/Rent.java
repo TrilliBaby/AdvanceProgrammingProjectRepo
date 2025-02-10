@@ -2,6 +2,7 @@ package javaEntertainment;
 
 public class Rent {
 	
+	
 	private float amountOwed;
 	private DateTime date; 
 	private DateTime time;

@@ -7,6 +7,7 @@ public class Report {
 	private DateTime timeGenerated;
 	private float totalRevenues;
 	
+	
 
 	public Report()
 	{
