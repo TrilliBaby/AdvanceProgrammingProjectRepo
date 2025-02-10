@@ -10,8 +10,6 @@ public class Rent {
 	private DateTime duration;
 	private String status;
 
-	
-	
 	public Rent()
 	{
 		amountOwed = 0;
@@ -86,6 +84,12 @@ public class Rent {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Rent [amountOwed=" + amountOwed + ", date=" + date + ", time=" + time + ", cost=" + cost
+				+ ", amountPaid=" + amountPaid + ", duration=" + duration + ", status=" + status + "]";
 	}
 	
 	
