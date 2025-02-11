@@ -3,7 +3,8 @@ package javaEntertainment;
 import java.io.Serializable;
 
 public class Equipment implements Serializable{
-	
+
+	private static final long serialVersionUID = 1L;
 	private String equipId; 
 	private String name; 
 	private String type; 
