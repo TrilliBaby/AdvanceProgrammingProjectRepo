@@ -1,6 +1,10 @@
 package javaEntertainment;
 
-public class Invoice {
+import java.io.Serializable;
+
+public class Invoice implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String inId;
 	private DateTime bookingDate; 
 	private DateTime issueDate; 
