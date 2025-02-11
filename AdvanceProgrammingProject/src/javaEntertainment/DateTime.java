@@ -2,8 +2,11 @@ package javaEntertainment;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.io.Serializable;
 
-public class DateTime {
+public class DateTime implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LogManager.getLogger(DateTime.class);
 	private int seconds;
 	private int minutes;
