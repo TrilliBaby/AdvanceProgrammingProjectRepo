@@ -1,7 +1,10 @@
 package javaEntertainment;
 
-public class Report {
-	
+import java.io.Serializable;
+
+public class Report implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String rId;  
 	private int totalBookings; 
 	private DateTime dateGenerated; 
