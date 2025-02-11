@@ -1,6 +1,8 @@
 package javaEntertainment;
 
-public class Equipment {
+import java.io.Serializable;
+
+public class Equipment implements Serializable{
 	
 	private String equipId; 
 	private String name; 
