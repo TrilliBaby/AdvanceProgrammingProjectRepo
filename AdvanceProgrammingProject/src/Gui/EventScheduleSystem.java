@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class EventScheduleSystem {
     private JFrame frame;
     private JPanel panel;
-    private JTextField assetNameField, eventNameField, quantityField;
+    private JTextField equipmentNameField, eventNameField, quantityField;
     private JTextArea outputArea;
     private JLabel statusLabel;
 
@@ -40,14 +40,14 @@ public class EventScheduleSystem {
 
     private void initializeComponents(GridBagConstraints gbc) {
         	
-    	// Asset Name Input
+    	// Equipment Name Input
         gbc.gridx = 0; // Column 0
         gbc.gridy = 1; // Row 1
-        panel.add(new JLabel("Asset:"), gbc);
+        panel.add(new JLabel("Equipment:"), gbc);
 
         assetNameField = new JTextField(20);
         gbc.gridx = 1; // Column 1
-        panel.add(assetNameField, gbc);
+        panel.add(equipmentNameField, gbc);
 
         // Event Name Input
         gbc.gridx = 0; // Column 0
@@ -105,7 +105,7 @@ public class EventScheduleSystem {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Retrieve input data
-            String assetName = assetNameField.getText();
+            String assetName = equipmentNameField.getText();
             String eventName = eventNameField.getText();
             String quantity = quantityField.getText();
 
@@ -113,7 +113,7 @@ public class EventScheduleSystem {
             outputArea.append("Asset: " + assetName + " \nEvent: " + eventName + " \nQuantity: " + quantity + "\n");
 
             // Clear input fields after submission
-            assetNameField.setText("");
+            equipmentNameField.setText("");
             eventNameField.setText("");
             quantityField.setText("");
         }
@@ -124,7 +124,7 @@ public class EventScheduleSystem {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Clear all input fields
-            assetNameField.setText("");
+            equipmentNameField.setText("");
             eventNameField.setText("");
             quantityField.setText("");
 
