@@ -147,7 +147,7 @@ public class EventScheduleSystem {
     
     public static void main(String[] args) {
     	//This launches the Event Schedule System
-        SwingUtilities.invokeLater(EventScheduleSystem::new);
+        SwingUtilities.invokeLater(EventScheduleSystem::new); //Ensures safe GUI creation and manipulation
     }
 
 }
