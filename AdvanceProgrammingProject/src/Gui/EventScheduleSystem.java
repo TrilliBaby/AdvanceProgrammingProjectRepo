@@ -35,7 +35,7 @@ public class EventScheduleSystem {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setLocationRelativeTo(null); //Center the window
+        frame.setLocationRelativeTo(null); //Centers the window
     }
 
     private void initializeComponents(GridBagConstraints gbc) {
@@ -45,7 +45,7 @@ public class EventScheduleSystem {
         gbc.gridy = 1; // Row 1
         panel.add(new JLabel("Equipment:"), gbc);
 
-        assetNameField = new JTextField(20);
+        equipmentNameField = new JTextField(20);
         gbc.gridx = 1; // Column 1
         panel.add(equipmentNameField, gbc);
 
@@ -65,7 +65,7 @@ public class EventScheduleSystem {
         panel.add(new JLabel("Quantity:"), gbc);
 
         quantityField = new JTextField(20);
-        quantityField.setToolTipText("Enter the quantity of assets");
+        quantityField.setToolTipText("Enter the quantity of equipments");
         gbc.gridx = 1; // Column 1
         panel.add(quantityField, gbc);
 
@@ -105,12 +105,12 @@ public class EventScheduleSystem {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Retrieve input data
-            String assetName = equipmentNameField.getText();
+            String equipmentName = equipmentNameField.getText();
             String eventName = eventNameField.getText();
             String quantity = quantityField.getText();
 
             // Here you would typically call a method to save this data to the database
-            outputArea.append("Asset: " + assetName + " \nEvent: " + eventName + " \nQuantity: " + quantity + "\n");
+            outputArea.append("Equipment: " + equipmentName + " \nEvent: " + eventName + " \nQuantity: " + quantity + "\n");
 
             // Clear input fields after submission
             equipmentNameField.setText("");
