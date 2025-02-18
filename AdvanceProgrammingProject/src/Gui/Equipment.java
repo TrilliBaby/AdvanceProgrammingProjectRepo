@@ -68,7 +68,7 @@ public class Equipment extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(61, 94, 1114, 723);
+		panel.setBounds(97, 93, 1114, 723);
 		desktopPane.add(panel);
 		
 		JPanel panel_1 = new JPanel();
