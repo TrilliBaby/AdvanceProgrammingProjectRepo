@@ -78,15 +78,6 @@ public class EventScheduleSystem {
         gbc.gridwidth = 2; // Span two columns
         panel.add(new JScrollPane(outputArea), gbc);
         gbc.gridwidth = 1; // Reset to default
-
-        // Status Bar
-        statusLabel = new JLabel("Welcome to the Event Scheduling System!");
-        statusLabel.setForeground(Color.BLUE);
-        gbc.gridx = 0; // Column 0
-        gbc.gridy = 0; // Row 0
-        gbc.gridwidth = 2; // Span two columns
-        panel.add(statusLabel, gbc);
-        gbc.gridwidth = 1; // Reset to default
         
         // Submit Button
         JButton submitButton = new JButton("Submit");
