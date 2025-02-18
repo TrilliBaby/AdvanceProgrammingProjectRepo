@@ -82,50 +82,5 @@ public class CustomerView_ extends JFrame {
 		gbc_desktopPane.gridx = 0;
 		gbc_desktopPane.gridy = 0;
 		getContentPane().add(desktopPane, gbc_desktopPane);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(146, 105, 940, 723);
-		desktopPane.add(panel);
-		panel.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 156, 940, 268);
-		panel.add(panel_1);
-		
-		JPanel panel_2 = new JPanel();
-		
-		JPanel panel_2_1 = new JPanel();
-		
-		JPanel panel_2_2 = new JPanel();
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(2)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panel_2_2, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(panel_2_1, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_2_2, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_2_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
-		panel_2_2.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(10, 245, 45, 13);
-		panel_2_2.add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("Add to Cart");
-		btnNewButton.setBounds(211, 241, 85, 21);
-		panel_2_2.add(btnNewButton);
-		panel_1.setLayout(gl_panel_1);
 	}
 }
