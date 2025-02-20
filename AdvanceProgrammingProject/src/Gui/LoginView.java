@@ -3,6 +3,7 @@ package Gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.GridLayout;
@@ -28,90 +29,81 @@ import javax.swing.JCheckBox;
 import javax.swing.JSplitPane;
 import javax.swing.JPasswordField;
 
-public class LoginView {
+public class LoginView extends JInternalFrame{
 
-	private JFrame frame;
+	//private JFrame frame;
 	private JTextField usernameTxtField;
 	private JPasswordField passwordField;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JLabel lblNewLabel;
+	private JButton btnNewButton;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginView window = new LoginView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
 	public LoginView() {
-		initialize();
+		super("name", true, true, true, true);
+		initializeComponents();
+		addComponentsToPanel();
+		addComponentsToWindow();
+		setWindowProperties();
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(221, 221, 255));
-		frame.getContentPane().setForeground(new Color(128, 128, 128));
-		frame.getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
+	private void initializeComponents() {
+		//this = new JFrame();
+		//this.getContentPane().setBackground(new Color(221, 221, 255));
+		//this.getContentPane().setForeground(new Color(128, 128, 128));
+		//this.getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JDesktopPane desktopPane = new JDesktopPane();
-		frame.getContentPane().add(desktopPane);
+		//JDesktopPane desktopPane = new JDesktopPane();
+		//frame.getContentPane().add(desktopPane);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(new Color(221, 221, 255));
 		panel.setBounds(279, 53, 319, 456);
-		desktopPane.add(panel);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBounds(597, 53, 319, 456);
-		desktopPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Login");
+		lblNewLabel = new JLabel("Login");
 		lblNewLabel.setBounds(99, 46, 119, 61);
-		panel_1.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		
 		usernameTxtField = new JTextField();
 		usernameTxtField.setBounds(51, 134, 225, 34);
-		panel_1.add(usernameTxtField);
 		usernameTxtField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Login");
+		btnNewButton = new JButton("Login");
 		btnNewButton.setBounds(95, 294, 144, 40);
-		panel_1.add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("EMAIL");
+		
+		lblNewLabel_1 = new JLabel("EMAIL");
 		lblNewLabel_1.setBounds(51, 121, 45, 13);
-		panel_1.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("PASSWORD");
+		
+		lblNewLabel_2 = new JLabel("PASSWORD");
 		lblNewLabel_2.setBounds(51, 197, 88, 13);
-		panel_1.add(lblNewLabel_2);
+		
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(51, 211, 225, 34);
-		panel_1.add(passwordField);
-		frame.setBackground(new Color(164, 180, 227));
-		frame.setBounds(100, 100, 1164, 643);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		/*
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setMargin(new Insets(30, 30, 30, 30));
-		frame.setJMenuBar(menuBar);
+		this.setJMenuBar(menuBar);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Home");
 		menuBar.add(mntmNewMenuItem_4);
@@ -130,5 +122,28 @@ public class LoginView {
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Login");
 		menuBar.add(mntmNewMenuItem);
+		*/
+	}
+	
+	public void addComponentsToPanel() {
+		panel_1.add(lblNewLabel);
+		panel_1.add(usernameTxtField);
+		panel_1.add(btnNewButton);
+		panel_1.add(lblNewLabel_1);
+		panel_1.add(lblNewLabel_2);
+		panel_1.add(passwordField);
+		
+	}
+	
+	public void addComponentsToWindow() {
+		this.add(panel);
+		this.add(panel_1);
+		
+	}
+	
+	public void setWindowProperties() {
+		this.setSize(1000, 600);
+		this.setVisible(true);
+		this.setBackground(new Color(164, 180, 227));
 	}
 }
