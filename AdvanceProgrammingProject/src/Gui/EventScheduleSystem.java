@@ -1,4 +1,4 @@
-package eventSchedule;
+package Gui;
 
 import javax.swing.*;
 import java.awt.*;
