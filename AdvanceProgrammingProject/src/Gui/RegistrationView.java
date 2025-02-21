@@ -3,6 +3,7 @@ package Gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
@@ -21,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class RegistrationView extends JFrame {
+public class RegistrationView extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
@@ -31,28 +32,14 @@ public class RegistrationView extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistrationView frame = new RegistrationView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public RegistrationView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1177, 1114);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 800, 700);
+		this.setVisible(true);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

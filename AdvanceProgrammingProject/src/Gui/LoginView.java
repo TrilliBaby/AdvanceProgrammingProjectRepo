@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 import java.awt.Insets;
 import java.awt.Color;
 import javax.swing.JMenu;
@@ -47,12 +49,20 @@ public class LoginView extends JInternalFrame{
 	 * Create the application.
 	 */
 	public LoginView() {
-		super("name", true, true, true, true);
+		super("Login", true, true, true, true);
 		initializeComponents();
 		addComponentsToPanel();
 		addComponentsToWindow();
 		setWindowProperties();
 		
+	}
+
+	public JButton getBtnNewButton() {
+		return btnNewButton;
+	}
+
+	public void setBtnNewButton(JButton btnNewButton) {
+		this.btnNewButton = btnNewButton;
 	}
 
 	/**
@@ -99,30 +109,6 @@ public class LoginView extends JInternalFrame{
 		passwordField = new JPasswordField();
 		passwordField.setBounds(51, 211, 225, 34);
 		
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		/*
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setMargin(new Insets(30, 30, 30, 30));
-		this.setJMenuBar(menuBar);
-		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Home");
-		menuBar.add(mntmNewMenuItem_4);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Up Coming Events");
-		menuBar.add(mntmNewMenuItem_2);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Booking");
-		menuBar.add(mntmNewMenuItem_3);
-		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Contact Us");
-		menuBar.add(mntmNewMenuItem_5);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Sign Up");
-		menuBar.add(mntmNewMenuItem_1);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Login");
-		menuBar.add(mntmNewMenuItem);
-		*/
 	}
 	
 	public void addComponentsToPanel() {
@@ -142,8 +128,12 @@ public class LoginView extends JInternalFrame{
 	}
 	
 	public void setWindowProperties() {
+		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		this.setSize(1000, 600);
 		this.setVisible(true);
 		this.setBackground(new Color(164, 180, 227));
 	}
+	
+	
+
 }

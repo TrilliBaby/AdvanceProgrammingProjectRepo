@@ -2,31 +2,39 @@ package Gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
 public class ParentWindow extends JFrame{
 	private JMenuBar menubar;
-	private JMenu login;
+	private JMenu user;
 	private JMenuItem loginItem;
+	private JMenuItem registerItem;
+	private LoginView loginViewObj;
 	private JDesktopPane desktop;
 	
 	public void InitializeComponents() {
 		menubar = new JMenuBar();
-		login = new JMenu("Login");
-		loginItem = new JMenuItem("new Login");
+		user = new JMenu("Login");
+		loginItem = new JMenuItem("Login");
+		registerItem = new JMenuItem("SignUp");
+		loginViewObj = new LoginView();
 		desktop = new JDesktopPane();
 	}
 	
 	public void addMenuItemToMenu() {
-		login.add(loginItem);
+		user.add(loginItem);
+		user.add(registerItem);
 	}
 	
 	public void addMenuToMenuBar() {
-		menubar.add(login);
+		menubar.add(user);
 	}
 	
 	public void addComponentsToWindow() {
+		desktop.add(new Equipment());
 		this.add(desktop);
 	}
 	
@@ -43,10 +51,31 @@ public class ParentWindow extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				desktop.add(new LoginView());
+				desktop.removeAll();
+				desktop.add(loginViewObj);
 			}
 			
 		});
+		
+		registerItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				desktop.add(new RegistrationView());
+			}
+			
+		});
+		
+		loginViewObj.getBtnNewButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				desktop.remove(loginViewObj);
+				desktop.add(new Equipment());
+			}
+			
+		});
+		
 	}
 	
 	public ParentWindow() {
