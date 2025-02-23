@@ -30,6 +30,9 @@ public class Report implements Serializable{
 	}
 	public Report(Report r) 
 	{
+		if (r == null) {
+            throw new IllegalArgumentException("Equipment object cannot be null");
+        }
 		this.rId = r.rId;
 		this.totalBookings = r.totalBookings;
 		this.dateGenerated = r.dateGenerated;
@@ -41,38 +44,65 @@ public class Report implements Serializable{
 	public String getRID() {
 		return rId;
 	}
-	public void setRID(String rID) {
-		rId = rID;
+	
+	public void setRID(String rId) {
+		if (rId == null || rId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Report ID cannot be empty");
+        }
+		this.rId = rId;
 	}
+	
 	public int getTotalBookings() {
 		return totalBookings;
 	}
+	
 	public void setTotalBookings(int totalBookings) {
+		if (totalBookings < 0) {
+            throw new IllegalArgumentException("Total Bookings cannot be negative");
+        }
 		this.totalBookings = totalBookings;
 	}
+	
 	public DateTime getDateGenerated() {
 		return dateGenerated;
 	}
+	
 	public void setDateGenerated(DateTime dateGenerated) {
+		if (dateGenerated == null) {
+            throw new IllegalArgumentException("There must be a date");
+        }
 		this.dateGenerated = dateGenerated;
 	}
+	
 	public DateTime getTimeGenerated() {
 		return timeGenerated;
 	}
+	
 	public void setTimeGenerated(DateTime timeGenerated) {
+		if (timeGenerated == null) {
+            throw new IllegalArgumentException("There must be a time");
+        }
 		this.timeGenerated = timeGenerated;
 	}
+	
 	public float getTotalRevenues() {
 		return totalRevenues;
 	}
+	
 	public void setTotalRevenues(float totalRevenues) {
+		if (totalRevenues < 0) {
+	        throw new IllegalArgumentException("Total revenues cannot be negative.");
+	    }
 		this.totalRevenues = totalRevenues;
 	}
 	
 	@Override
 	public String toString() {
-		return "Report [RID=" + rId + ", TotalBookings=" + totalBookings + ", DateGenerated=" + dateGenerated
-				+ ", TimeGenerated=" + timeGenerated + ", TotalRevenues=" + totalRevenues + "]";
+		return "\nReport Id = " + rId +
+				"\nTotal Bookings = " + totalBookings +
+				"\nDate Generated = " + dateGenerated +
+				"\nTime Generated = " + timeGenerated + 
+				"\nTotal Revenues = " + totalRevenues;
 	}
 	
 	

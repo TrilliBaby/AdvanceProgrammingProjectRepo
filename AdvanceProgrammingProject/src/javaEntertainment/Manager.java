@@ -6,6 +6,9 @@ public class Manager extends Employee {
 
 	public Manager(Manager m) {
 		super(m);
+		if (m == null) {
+			throw new IllegalArgumentException("Manager object cannot be null");
+		}
 		this.position = m.position;
 	}
 
@@ -29,6 +32,9 @@ public class Manager extends Employee {
 	}
 
 	public void setPosition(String position) {
+		if (position == null || position.trim().isEmpty()) {
+			throw new IllegalArgumentException("You must enter your position");
+		}
 		this.position = position;
 	}
 

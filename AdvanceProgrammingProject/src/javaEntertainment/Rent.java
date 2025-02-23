@@ -35,6 +35,9 @@ public class Rent {
 	
 	public Rent(Rent r)
 	{
+		if (r == null) {
+            throw new IllegalArgumentException("Rent object cannot be null");
+        }
 		this.amountOwed = r.amountOwed;
 		this.date = r.date; 
 		this.time = r.time;
@@ -47,50 +50,89 @@ public class Rent {
 	public float getAmountOwed() {
 		return amountOwed;
 	}
+	
 	public void setAmountOwed(float amountOwed) {
+		 if (amountOwed < 0) {
+	            throw new IllegalArgumentException("Amount owed cannot be negative");
+	        }
 		this.amountOwed = amountOwed;
 	}
+	
 	public DateTime getDate() {
 		return date;
 	}
+	
 	public void setDate(DateTime date) {
+		if (date == null) {
+            throw new IllegalArgumentException("There must be a time");
+        }
 		this.date = date;
 	}
+	
 	public DateTime getTime() {
 		return time;
 	}
+	
 	public void setTime(DateTime time) {
+		if (time == null) {
+            throw new IllegalArgumentException("There must be a time");
+        }
 		this.time = time;
 	}
+	
 	public float getCost() {
 		return cost;
 	}
+	
 	public void setCost(float cost) {
+		if (cost < 0) {
+            throw new IllegalArgumentException("Cost cannot be negative");
+        }
 		this.cost = cost;
 	}
+	
 	public float getAmountPaid() {
 		return amountPaid;
 	}
+	
 	public void setAmountPaid(float amountPaid) {
+		if (amountPaid < 0) {
+            throw new IllegalArgumentException("Amount paid cannot be negative");
+        }
 		this.amountPaid = amountPaid;
 	}
+	
 	public DateTime getDuration() {
 		return duration;
 	}
+	
 	public void setDuration(DateTime duration) {
+		if (duration == null) {
+			throw new IllegalArgumentException("There must be a duration");
+		}
 		this.duration = duration;
 	}
+	
 	public String getStatus() {
 		return status;
 	}
+	
 	public void setStatus(String status) {
+		if (status == null || status.trim().isEmpty()) {
+            throw new IllegalArgumentException("There must be a status");
+        }
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Rent [amountOwed=" + amountOwed + ", date=" + date + ", time=" + time + ", cost=" + cost
-				+ ", amountPaid=" + amountPaid + ", duration=" + duration + ", status=" + status + "]";
+		return "\nRent = " + amountOwed +
+				"\nDate = " + date +
+				"\nTime = " + time +
+				"\nCost = " + cost + 
+				"\nAmount Paid = " + amountPaid +
+				"\nDuration = " + duration +
+				"\nStatus = " + status;
 		
 	}
 	

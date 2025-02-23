@@ -1,5 +1,9 @@
 package javaEntertainment;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class Person {
 	
 	protected String firstName;
@@ -11,6 +15,10 @@ public class Person {
 	
 	
 	public Person (Person p) {
+		if (p == null) {
+            throw new IllegalArgumentException("Person object cannot be null");
+        }
+		
 		this.firstName = p.firstName;
 		this.lastName = p.lastName;
 		this.age = p.age;
@@ -36,12 +44,23 @@ public class Person {
 		this.address = address;
 		this.email = email;
 	}
+	
+	 private boolean isAgeValid(String dOB, int age) {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	        LocalDate birthDate = LocalDate.parse(dOB, formatter);
+	        LocalDate currentDate = LocalDate.now();
+	        int calculatedAge = Period.between(birthDate, currentDate).getYears();
+	        return calculatedAge == age;
+	    }
 
 	public String getFirstName() {
 		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
+		if (firstName == null || firstName.trim().isEmpty()) {
+            throw new IllegalArgumentException("First name cannot be empty.");
+        }
 		this.firstName = firstName;
 	}
 
@@ -50,6 +69,9 @@ public class Person {
 	}
 
 	public void setLastName(String lastName) {
+		if (lastName == null || lastName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Last name cannot be empty.");
+        }
 		this.lastName = lastName;
 	}
 
@@ -58,6 +80,13 @@ public class Person {
 	}
 
 	public void setAge(int age) {
+		if (age < 0 ) {
+			throw new IllegalArgumentException("Age cannot be negative");
+		}
+		
+		if (!isAgeValid(dOB, age)) {
+            throw new IllegalArgumentException("The age does not match the date of birth.");
+        }
 		this.age = age;
 	}
 
@@ -66,6 +95,13 @@ public class Person {
 	}
 
 	public void setdOB(String dOB) {
+		if (dOB == null || dOB.trim().isEmpty()) {
+			throw new IllegalArgumentException("You must enter a Date of birth");
+		}
+		
+		if (!isAgeValid(dOB, age)) {
+            throw new IllegalArgumentException("The Date of birth does not match the age");
+        }
 		this.dOB = dOB;
 	}
 
@@ -74,6 +110,9 @@ public class Person {
 	}
 
 	public void setAddress(String address) {
+		if (address == null || address.trim().isEmpty()) {
+            throw new IllegalArgumentException("You must enter an address");
+        }
 		this.address = address;
 	}
 
@@ -82,12 +121,10 @@ public class Person {
 	}
 
 	public void setEmail(String email) {
+		if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("You must enter an email");
+        }
 		this.email = email;
 	}
-	
-	
-	
-	
-	
 
 }
