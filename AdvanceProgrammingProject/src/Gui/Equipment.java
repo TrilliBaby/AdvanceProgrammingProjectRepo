@@ -30,33 +30,14 @@ public class Equipment extends JInternalFrame {
 		this.setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		setBounds(0, 00, 1000, 800);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("New menu item");
-		menuBar.add(mntmNewMenuItem_2);
-		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("New menu item");
-		menuBar.add(mntmNewMenuItem_4);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("New menu item");
-		menuBar.add(mntmNewMenuItem_3);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		menuBar.add(mntmNewMenuItem_1);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		menuBar.add(mntmNewMenuItem);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JDesktopPane desktopPane = new JDesktopPane();
-		getContentPane().add(desktopPane);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(97, 93, 1114, 723);
-		desktopPane.add(panel);
+		panel.setSize(300, 300);
+		this.add(panel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 70, 1086, 354);
