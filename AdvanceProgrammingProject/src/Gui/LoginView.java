@@ -47,9 +47,12 @@ public class LoginView extends JInternalFrame{
 
 	/**
 	 * Create the application.
+	 * 
+	 * add login to desktopPane as the starting screen that wont dispose until the 
+	 * password is correct
 	 */
 	public LoginView() {
-		super("Login", true, true, true, true);
+		super("Login", true);
 		initializeComponents();
 		addComponentsToPanel();
 		addComponentsToWindow();
