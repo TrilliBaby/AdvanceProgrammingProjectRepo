@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class Equipment extends JInternalFrame{
 
@@ -29,7 +30,7 @@ public class Equipment extends JInternalFrame{
 	public Equipment() {
 		this.setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1162, 955);
+		setBounds(100, 100, 1380, 955);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -53,93 +54,142 @@ public class Equipment extends JInternalFrame{
 		JDesktopPane desktopPane = new JDesktopPane();
 		getContentPane().add(desktopPane);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBounds(97, 93, 1114, 723);
-		desktopPane.add(panel);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(79, 95, 1236, 733);
+		desktopPane.add(scrollPane);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(0, 70, 1086, 354);
-		panel.add(panel_1);
+		scrollPane.setViewportView(panel_1);
 		
 		JPanel panel_2 = new JPanel();
+		
+		JPanel panel_2_1 = new JPanel();
+		panel_2_1.setLayout(null);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("New label");
+		lblNewLabel_1_1.setBounds(42, 264, 45, 13);
+		panel_2_1.add(lblNewLabel_1_1);
+		
+		JButton btnNewButton_1_1 = new JButton("Add to Cart");
+		btnNewButton_1_1.setBounds(234, 260, 85, 21);
+		panel_2_1.add(btnNewButton_1_1);
+		
+		JPanel panel_3_1_1_1 = new JPanel();
+		panel_3_1_1_1.setBackground(new Color(221, 221, 255));
+		panel_3_1_1_1.setBounds(31, 35, 288, 185);
+		panel_2_1.add(panel_3_1_1_1);
+		
+		JPanel panel_2_1_1 = new JPanel();
+		panel_2_1_1.setLayout(null);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("New label");
+		lblNewLabel_1_1_1.setBounds(42, 264, 45, 13);
+		panel_2_1_1.add(lblNewLabel_1_1_1);
+		
+		JButton btnNewButton_1_1_1 = new JButton("Add to Cart");
+		btnNewButton_1_1_1.setBounds(234, 260, 85, 21);
+		panel_2_1_1.add(btnNewButton_1_1_1);
+		
+		JPanel panel_3_1_1_1_1 = new JPanel();
+		panel_3_1_1_1_1.setBackground(new Color(221, 221, 255));
+		panel_3_1_1_1_1.setBounds(31, 35, 288, 185);
+		panel_2_1_1.add(panel_3_1_1_1_1);
 		
 		JPanel panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(10, 245, 45, 13);
-		panel_2_2.add(lblNewLabel);
+		JLabel lblNewLabel_1_2 = new JLabel("New label");
+		lblNewLabel_1_2.setBounds(42, 264, 45, 13);
+		panel_2_2.add(lblNewLabel_1_2);
 		
-		JButton btnNewButton = new JButton("Add to Cart");
-		btnNewButton.setBounds(211, 241, 85, 21);
-		panel_2_2.add(btnNewButton);
+		JButton btnNewButton_1_2 = new JButton("Add to Cart");
+		btnNewButton_1_2.setBounds(234, 260, 85, 21);
+		panel_2_2.add(btnNewButton_1_2);
 		
-		JPanel panel_2_2_1 = new JPanel();
-		panel_2_2_1.setLayout(null);
+		JPanel panel_3_1_1_2 = new JPanel();
+		panel_3_1_1_2.setBackground(new Color(221, 221, 255));
+		panel_3_1_1_2.setBounds(31, 35, 288, 185);
+		panel_2_2.add(panel_3_1_1_2);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(10, 245, 45, 13);
-		panel_2_2_1.add(lblNewLabel_2);
+		JPanel panel_2_1_2 = new JPanel();
+		panel_2_1_2.setLayout(null);
 		
-		JButton btnNewButton_2 = new JButton("Add to Cart");
-		btnNewButton_2.setBounds(211, 241, 85, 21);
-		panel_2_2_1.add(btnNewButton_2);
+		JLabel lblNewLabel_1_1_2 = new JLabel("New label");
+		lblNewLabel_1_1_2.setBounds(42, 264, 45, 13);
+		panel_2_1_2.add(lblNewLabel_1_1_2);
 		
-		JPanel panel_3_1_2 = new JPanel();
-		panel_3_1_2.setBackground(new Color(221, 221, 255));
-		panel_3_1_2.setBounds(26, 25, 270, 175);
-		panel_2_2_1.add(panel_3_1_2);
+		JButton btnNewButton_1_1_2 = new JButton("Add to Cart");
+		btnNewButton_1_1_2.setBounds(234, 260, 85, 21);
+		panel_2_1_2.add(btnNewButton_1_1_2);
+		
+		JPanel panel_3_1_1_1_2 = new JPanel();
+		panel_3_1_1_1_2.setBackground(new Color(221, 221, 255));
+		panel_3_1_1_1_2.setBounds(31, 35, 288, 185);
+		panel_2_1_2.add(panel_3_1_1_1_2);
+		
+		JPanel panel_2_1_1_1 = new JPanel();
+		panel_2_1_1_1.setLayout(null);
+		
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("New label");
+		lblNewLabel_1_1_1_1.setBounds(42, 264, 45, 13);
+		panel_2_1_1_1.add(lblNewLabel_1_1_1_1);
+		
+		JButton btnNewButton_1_1_1_1 = new JButton("Add to Cart");
+		btnNewButton_1_1_1_1.setBounds(234, 260, 85, 21);
+		panel_2_1_1_1.add(btnNewButton_1_1_1_1);
+		
+		JPanel panel_3_1_1_1_1_1 = new JPanel();
+		panel_3_1_1_1_1_1.setBackground(new Color(221, 221, 255));
+		panel_3_1_1_1_1_1.setBounds(31, 35, 288, 185);
+		panel_2_1_1_1.add(panel_3_1_1_1_1_1);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap(47, Short.MAX_VALUE)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(panel_2_2, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(panel_2_2_1, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
-					.addGap(8))
+					.addGap(47)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_2_2, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE))
+					.addGap(35)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(panel_2_1_2, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+							.addComponent(panel_2_1_1_1, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(panel_2_1, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+							.addComponent(panel_2_1_1, GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE)))
+					.addGap(36))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(37)
+					.addGap(22)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(panel_2_2_1, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-								.addComponent(panel_2_2, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
-							.addGap(49))))
+						.addComponent(panel_2_1_1, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_2_1, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE))
+					.addGap(39)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel_2_1_2, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_2_2, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_2_1_1_1, GroupLayout.PREFERRED_SIZE, 322, GroupLayout.PREFERRED_SIZE)))
 		);
-		
-		JPanel panel_3_1 = new JPanel();
-		panel_3_1.setBackground(new Color(221, 221, 255));
-		panel_3_1.setBounds(26, 25, 270, 175);
-		panel_2_2.add(panel_3_1);
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(10, 245, 45, 13);
+		lblNewLabel_1.setBounds(42, 264, 45, 13);
 		panel_2.add(lblNewLabel_1);
 		
 		JButton btnNewButton_1 = new JButton("Add to Cart");
-		btnNewButton_1.setBounds(211, 241, 85, 21);
+		btnNewButton_1.setBounds(234, 260, 85, 21);
 		panel_2.add(btnNewButton_1);
-		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(121, 202, 45, 13);
-		panel_2.add(lblNewLabel_3);
 		
 		JPanel panel_3_1_1 = new JPanel();
 		panel_3_1_1.setBackground(new Color(221, 221, 255));
-		panel_3_1_1.setBounds(50, 24, 270, 175);
+		panel_3_1_1.setBounds(31, 35, 288, 185);
 		panel_2.add(panel_3_1_1);
 		panel_1.setLayout(gl_panel_1);
 	}
-
 }
