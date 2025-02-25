@@ -7,7 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="properties"/>
-	<classpathentry kind="lib" path="C:/Users/Brianna Mowatt/Desktop/Work Stuff/School stuff/Advanced Programming/apache-log4j-2.24.3-bin/log4j-core-2.24.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Brianna Mowatt/Desktop/Work Stuff/School stuff/Advanced Programming/apache-log4j-2.24.3-bin/log4j-api-2.24.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/atkin/git/AdvanceProgrammingProjectRepo/AdvanceProgrammingProject/logFiles/log4j-api-2.24.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/atkin/git/AdvanceProgrammingProjectRepo/AdvanceProgrammingProject/logFiles/log4j-core-2.24.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
