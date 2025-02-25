@@ -13,15 +13,22 @@ public class ParentFrame extends JFrame{
 	private JMenu user;
 	private JMenuItem loginItem;
 	private JMenuItem registerItem;
+	private JMenuItem rentsItem;
 	
 	private LoginView loginViewObj;
 	private CustomerView cusViewObj;
+	private RentsView rentsViewObj;
+	private EquipmentView equipViewObj;
 	
 	private JDesktopPane desktop;
 	private JMenuItem customer;
 	private JMenuItem event;
 	private JMenuItem equipment;
+	
 	private JMenu generate;
+	private JMenuItem invoiceItem;
+	private JMenuItem reportItem;
+	
 	
 	public void InitializeComponents() {
 		menubar = new JMenuBar();
@@ -35,6 +42,11 @@ public class ParentFrame extends JFrame{
 		event = new JMenuItem("Event");
 		equipment = new JMenuItem("Equipment");
 		generate = new JMenu("Create");
+		invoiceItem = new JMenuItem("Invoice");
+		reportItem = new JMenuItem("Report");
+		rentsItem = new JMenuItem("Renting");
+		rentsViewObj = new RentsView();
+		equipViewObj = new EquipmentView();
 		
 	}
 	
@@ -44,6 +56,11 @@ public class ParentFrame extends JFrame{
 		user.add(customer);
 		user.add(equipment);
 		user.add(event);
+		user.add(rentsItem);
+		
+		generate.add(invoiceItem);
+		generate.add(reportItem);
+		//use joptionpanes
 	}
 	
 	public void addMenuToMenuBar() {
@@ -97,7 +114,16 @@ public class ParentFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				desktop.add(new EquipmentView());
+				desktop.add(equipViewObj);//change to obj
+			}
+			
+		});
+		
+		rentsItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				desktop.add(rentsViewObj);
 			}
 			
 		});

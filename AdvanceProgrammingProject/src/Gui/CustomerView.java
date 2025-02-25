@@ -13,7 +13,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 
-
+//add parent attributes to gui
 public class CustomerView extends JInternalFrame{
 	private JLabel cusIDLabel;
 	private JLabel phoneLabel;
