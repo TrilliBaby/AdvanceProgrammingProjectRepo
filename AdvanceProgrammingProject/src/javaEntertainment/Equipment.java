@@ -9,7 +9,8 @@ public class Equipment implements Serializable {
     private String name;
     private String type;
     private String status;
-    private float cost;
+    private double cost;
+    private double amount;
 
     public Equipment() {
         equipId = "";
@@ -82,23 +83,33 @@ public class Equipment implements Serializable {
         this.status = status;
     }
 
-    public Float getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(Float cost) {
+    public void setCost(double cost) {
         if (cost < 0) {
             throw new IllegalArgumentException("Cost cannot be negative");
         }
         this.cost = cost;
     }
     
-    @Override
+    
+    public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	@Override
 	public String toString() {
 		return "\nEquipment Id = " + equipId + 
 				"\nName = " + name + 
 				"\nType = " + type + 
 				"\nStatus = " + status +
-				"\nCost = "+ cost;
+				"\nCost = "+ cost +
+				"\nAmount = " + amount;
 	} 
 }

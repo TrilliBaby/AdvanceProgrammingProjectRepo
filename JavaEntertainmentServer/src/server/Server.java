@@ -13,6 +13,7 @@ import java.sql.SQLException;
 
 import domain.Customer;
 import domain.Equipment;
+import domain.Rent;
 
 public class Server {
 	private ServerSocket serverSocket;
@@ -73,15 +74,14 @@ public class Server {
 		String sql = "INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?,?,?)";
 		try {
 			stat = mycon.prepareStatement(sql);
-			stat.setString(2, cus.getEmpId());
-			stat.setString(3, cus.getName());
-			stat.setInt(5, cus.getAge());
-			//stat.setDate(4, cus.getdOB());
-			stat.setString(6, cus.getAddress());
-			stat.setString(7, cus.getEmail());
+			stat.setString(2, cus.getName());
+			stat.setInt(4, cus.getAge());
+			//stat.setDate(3, );
+			stat.setString(5, cus.getAddress());
+			stat.setString(6, cus.getEmail());
 			stat.setString(1, cus.getCusID());
-			stat.setString(8, cus.getPhoneNumber());
-			stat.setLong(9, cus.getGender());
+			stat.setString(7, cus.getPhoneNumber());
+			stat.setLong(8, cus.getGender());
 		} catch (SQLException e) {
 			
 			// TODO Auto-generated catch block
@@ -91,25 +91,26 @@ public class Server {
 		
 	}
 	
+	
 	private void addEquipmentToDb(Equipment equip) {
-		String sql = "INSERT INTO EQUIPMENT VALUES(?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO EQUIPMENT VALUES(?,?,?,?,?,?)";
 		try {
 			stat = mycon.prepareStatement(sql);
-			stat.setString(2, cus.getEmpId());
-			stat.setString(3, cus.getName());
-			stat.setInt(5, cus.getAge());
-			//stat.setDate(4, cus.getdOB());
-			stat.setString(6, cus.getAddress());
-			stat.setString(7, cus.getEmail());
-			stat.setString(1, cus.getCusID());
-			stat.setString(8, cus.getPhoneNumber());
-			stat.setLong(9, cus.getGender());
+			stat.setString(2, equip.getName());
+			stat.setString(3, equip.getType());
+			stat.setDouble(5, equip.getAmount());
+			//stat.setDate(4, equip.getStatus());
+			stat.setDouble(6, equip.getCost());
+			stat.setString(1, equip.getEquipId());
 		} catch (SQLException e) {
 			
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	
+	}
+	
+	private void addRentsToDb(Rent rent) {
 		
 	}
 	
