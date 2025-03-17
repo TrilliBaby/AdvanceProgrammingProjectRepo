@@ -5,11 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import domain.Customer;
 import domain.Equipment;
@@ -26,9 +22,11 @@ public class Server {
 	private PreparedStatement stat;
 	private ResultSet results;
 	
+	
 	private Server() {
 		try {
 			serverSocket = new ServerSocket(8888,1);
+			waitForRequest();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,11 +70,13 @@ public class Server {
 	
 	private void addCustomerToDb(Customer cus) {
 		String sql = "INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?,?,?)";
+		java.sql.Date date = java.sql.Date.valueOf(cus.getdOB());
+
 		try {
 			stat = mycon.prepareStatement(sql);
 			stat.setString(2, cus.getName());
 			stat.setInt(4, cus.getAge());
-			//stat.setDate(3, );
+			stat.setDate(3, date);
 			stat.setString(5, cus.getAddress());
 			stat.setString(6, cus.getEmail());
 			stat.setString(1, cus.getCusID());
@@ -114,7 +114,11 @@ public class Server {
 		
 	}
 	
-	private void waitforRequest() {
+	private void search() {
+		
+	}
+	
+	private void waitForRequest() {
 		getDatabaseConnection();
 		String action;
 		Customer cus = new Customer();
