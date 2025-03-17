@@ -122,6 +122,8 @@ public class Server {
 		getDatabaseConnection();
 		String action;
 		Customer cus = new Customer();
+		Equipment equip = new Equipment();
+		Rent rent = new Rent();
 		
 		try {
 			while(true) {
@@ -131,9 +133,21 @@ public class Server {
 					action = (String) is.readObject();
 					
 					switch(action){
-					case "":
+					case "add customer":
+						cus = (Customer) is.readObject();
+						addCustomerToDb(cus);
 						break;
+					case "add equipment":
+						equip = (Equipment) is.readObject();
+						addEquipmentToDb(equip);
+						break;
+					case "add rent":
+						rent = (Rent) is.readObject();
+						addRentsToDb(rent);
+						break;
+						
 					}
+					
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

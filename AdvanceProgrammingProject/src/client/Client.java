@@ -6,6 +6,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javaEntertainment.Customer;
+import javaEntertainment.Equipment;
+import javaEntertainment.Rent;
+
 public class Client {
 	private String action;
 	private Socket connectionSocket;
@@ -15,6 +19,7 @@ public class Client {
 	public Client() {
 		try {
 			connectionSocket = new Socket("127.0.0.1", 8888);
+			configureStreams();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +64,46 @@ public class Client {
 		
 	}
 	
+	public void sendCustomer(Customer cus) {
+		try {
+			os.writeObject(cus);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void sendEquipment(Equipment equip) {
+		try {
+			os.writeObject(equip);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void sendRents(Rent rent) {
+		try {
+			os.writeObject(rent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	private void recieveResponse() {
+		switch(action) {
+		case "add customer":
+			break;
+		case "add equipment":
+			break;
+		case "add rent":
+			break;
+		}
+		
 		
 	}
 
