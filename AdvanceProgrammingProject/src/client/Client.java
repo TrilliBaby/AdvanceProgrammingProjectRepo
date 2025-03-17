@@ -58,5 +58,9 @@ public class Client {
 		}
 		
 	}
+	
+	private void recieveResponse() {
+		
+	}
 
 }
