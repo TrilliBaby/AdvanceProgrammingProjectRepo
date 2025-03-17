@@ -69,8 +69,7 @@ public class Employee extends Person implements Serializable {
     @Override
     public String toString() {
         return "\nEmployee User Name = " + userName +
-               "\nFirst Name = " + firstName +
-               "\nLast Name = " + lastName +
+               "\nName = " + name +
                "\nTRN = " + trn +
                "\nPassword = " + password +
                "\nDate Of Birth = " + dOB +

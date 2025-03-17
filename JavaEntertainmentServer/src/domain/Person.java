@@ -6,8 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Person {
 	
-	protected String firstName;
-	protected String lastName;
+	protected String name;
 	protected int age;
 	protected String dOB;
 	protected String address;
@@ -19,8 +18,7 @@ public class Person {
             throw new IllegalArgumentException("Person object cannot be null");
         }
 		
-		this.firstName = p.firstName;
-		this.lastName = p.lastName;
+		this.name = p.name;
 		this.age = p.age;
 		this.dOB = p.dOB;
 		this.address = p.address;
@@ -28,17 +26,15 @@ public class Person {
 	}
 	
 	public Person () {
-		this.firstName = "";
-		this.lastName = "";
+		this.name= "";
 		this.age = 0;
 		this.dOB = "";
 		this.address = "";
 		this.email = "";
 	}
 	
-	public Person(String firstName, String lastName, int age, String dOB, String address, String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public Person(String name, int age, String dOB, String address, String email) {
+		this.name = name;
 		this.age = age;
 		this.dOB = dOB;
 		this.address = address;
@@ -53,26 +49,15 @@ public class Person {
 	        return calculatedAge == age;
 	    }
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		if (firstName == null || firstName.trim().isEmpty()) {
+	public void setName(String ame) {
+		if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("First name cannot be empty.");
         }
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		if (lastName == null || lastName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Last name cannot be empty.");
-        }
-		this.lastName = lastName;
+		this.name = name;
 	}
 
 	public int getAge() {

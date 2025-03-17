@@ -8,6 +8,7 @@ public class Customer extends Person implements Serializable {
     private String cusID;
     private String phoneNumber;
     private char gender;
+    private String empId;
 
     public Customer(Customer c) {
         super(c);
@@ -17,6 +18,7 @@ public class Customer extends Person implements Serializable {
         this.cusID = c.cusID;
         this.phoneNumber = c.phoneNumber;
         this.gender = c.gender;
+        this.empId = c.empId;
     }
 
     public Customer() {
@@ -24,16 +26,28 @@ public class Customer extends Person implements Serializable {
         this.cusID = "";
         this.phoneNumber = "";
         this.gender = ' ';
+        this.empId = "";
     }
 
-    public Customer(Person p, String cusID, String phoneNumber, char gender) {
+    public Customer(Person p, String cusID, String phoneNumber, char gender, String empId) {
         super(p);
         setCusID(cusID);
         setPhoneNumber(phoneNumber);
         setGender(gender);
+        setEmpId(empId);
     }
+    
+    
 
-    public String getCusID() {
+    public String getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
+	public String getCusID() {
         return cusID;
     }
 
@@ -70,13 +84,14 @@ public class Customer extends Person implements Serializable {
     public String toString() {
         return "Customer" +
                "\n  Customer ID = " + cusID +
-               "\n  First Name = " + firstName +
-               "\n  Last Name = " + lastName +
+               "\n  Name = " + name +
                "\n  Gender = " + gender +
                "\n  Age = " + age +
                "\n  Date of Birth = " + dOB +
                "\n  Phone Number = " + phoneNumber +
                "\n  Email = " + email +
-               "\n  Address = " + address;
+               "\n  Address = " + address +
+               "\n  Employee ID = " + empId ;
+        	
     }
 }

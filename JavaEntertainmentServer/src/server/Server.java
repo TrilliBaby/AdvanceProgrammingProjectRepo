@@ -11,13 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import domain.Customer;
+import domain.Equipment;
+
 public class Server {
 	private ServerSocket serverSocket;
 	private Socket connectionSocket;
 	private ObjectOutputStream os;
 	private ObjectInputStream is;
 	
-	private static String url = "jbdc:mysql://localhost:3307/";
+	private static String url = "jbdc:mysql://localhost:3307/javaentertainment";
 	private static Connection mycon = null;
 	private PreparedStatement stat;
 	private ResultSet results;
@@ -66,13 +69,54 @@ public class Server {
 		
 	}
 	
-	private void addCustomerToDb() {
+	private void addCustomerToDb(Customer cus) {
+		String sql = "INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?,?,?)";
+		try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(2, cus.getEmpId());
+			stat.setString(3, cus.getName());
+			stat.setInt(5, cus.getAge());
+			//stat.setDate(4, cus.getdOB());
+			stat.setString(6, cus.getAddress());
+			stat.setString(7, cus.getEmail());
+			stat.setString(1, cus.getCusID());
+			stat.setString(8, cus.getPhoneNumber());
+			stat.setLong(9, cus.getGender());
+		} catch (SQLException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	private void addEquipmentToDb(Equipment equip) {
+		String sql = "INSERT INTO EQUIPMENT VALUES(?,?,?,?,?,?,?,?,?)";
+		try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(2, cus.getEmpId());
+			stat.setString(3, cus.getName());
+			stat.setInt(5, cus.getAge());
+			//stat.setDate(4, cus.getdOB());
+			stat.setString(6, cus.getAddress());
+			stat.setString(7, cus.getEmail());
+			stat.setString(1, cus.getCusID());
+			stat.setString(8, cus.getPhoneNumber());
+			stat.setLong(9, cus.getGender());
+		} catch (SQLException e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
 	private void waitforRequest() {
 		getDatabaseConnection();
 		String action;
+		Customer cus = new Customer();
 		
 		try {
 			while(true) {
