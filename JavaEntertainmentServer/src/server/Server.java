@@ -7,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.*;
 
+import javax.swing.JOptionPane;
+
 import domain.Customer;
 import domain.Equipment;
 import domain.Rent;
@@ -17,7 +19,7 @@ public class Server {
 	private ObjectOutputStream os;
 	private ObjectInputStream is;
 	
-	private static String url = "jbdc:mysql://localhost:3307/javaentertainment";
+	private static String url = "jdbc:mysql://localhost:3307/javaentertainment";
 	private static Connection mycon = null;
 	private PreparedStatement stat;
 	private ResultSet results;
@@ -69,24 +71,37 @@ public class Server {
 	}
 	
 	private void addCustomerToDb(Customer cus) {
-		String sql = "INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?,?,?)";
-		java.sql.Date date = java.sql.Date.valueOf(cus.getdOB());
+		String sql = "INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?,?)";
+		//java.sql.Date date = java.sql.Date.valueOf(cus.getdOB());
 
 		try {
-			stat = mycon.prepareStatement(sql);
-			stat.setString(2, cus.getName());
-			stat.setInt(4, cus.getAge());
-			stat.setDate(3, date);
-			stat.setString(5, cus.getAddress());
-			stat.setString(6, cus.getEmail());
-			stat.setString(1, cus.getCusID());
-			stat.setString(7, cus.getPhoneNumber());
-			stat.setLong(8, cus.getGender());
-		} catch (SQLException e) {
 			
+			try {
+				stat = mycon.prepareStatement(sql);
+				stat.setString(2, cus.getName());
+				stat.setInt(4, cus.getAge());
+				stat.setDate(3, java.sql.Date.valueOf(cus.getdOB()));
+				stat.setString(5, cus.getAddress());
+				stat.setString(6, cus.getEmail());
+				stat.setString(1, cus.getCusID());
+				stat.setString(7, cus.getPhoneNumber());
+				stat.setString(8, String.valueOf(cus.getGender()));
+				
+			}catch(IllegalArgumentException e) {
+				JOptionPane.showMessageDialog(null, "Invalid");
+				
+			}
+			
+			
+			
+			int rowsAdded = stat.executeUpdate();
+		
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 		
 	}
@@ -162,6 +177,7 @@ public class Server {
 	}
 
 	public static void main(String[] args) {
+		new Server();
 		
 
 	}

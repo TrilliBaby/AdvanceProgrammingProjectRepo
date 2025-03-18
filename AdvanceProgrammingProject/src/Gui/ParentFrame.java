@@ -8,6 +8,10 @@ import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
+import client.Client;
+import domain.Customer;
+import domain.Person;
+
 public class ParentFrame extends JFrame{
 	private JMenuBar menubar;
 	private JMenu user;
@@ -47,6 +51,7 @@ public class ParentFrame extends JFrame{
 		rentsItem = new JMenuItem("Renting");
 		rentsViewObj = new RentsView();
 		equipViewObj = new EquipmentView();
+		
 		
 	}
 	
@@ -136,6 +141,28 @@ public class ParentFrame extends JFrame{
 				desktop.add(new Equipment());
 			}
 			
+		});
+		
+		cusViewObj.getAddBtn().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				char gen;
+					
+				if(cusViewObj.getMale().isSelected()) {
+						gen = 'M';
+				}
+				else {
+					gen = 'F';
+				}
+				Customer cus = new Customer(new Person(cusViewObj.getNameText().getText(), Integer.parseInt(cusViewObj.getAgeText().getText()), cusViewObj.getDob().getText(), cusViewObj.getAddressText().getText(),cusViewObj.getEmailText().getText()), cusViewObj.getCusIDText().getText(), cusViewObj.getPhoneText().getText(), gen);
+				Client cliObj = new Client();
+				cliObj.sendAction("add customer");
+				cliObj.sendCustomer(cus);
+				cliObj.recieveResponse();
+					
+			}
+				
 		});
 		
 	}
