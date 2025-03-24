@@ -6,7 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import javaEntertainment.Customer;
+import javax.swing.JOptionPane;
+
+import domain.Customer;
 import javaEntertainment.Equipment;
 import javaEntertainment.Rent;
 
@@ -84,7 +86,7 @@ public class Client {
 		
 	}
 	
-	private void sendRents(Rent rent) {
+	public void sendRents(Rent rent) {
 		try {
 			os.writeObject(rent);
 		} catch (IOException e) {
@@ -94,9 +96,10 @@ public class Client {
 		
 	}
 	
-	private void recieveResponse() {
+	public void recieveResponse() {
 		switch(action) {
 		case "add customer":
+			JOptionPane.showMessageDialog(null, "Customer Added to DB");
 			break;
 		case "add equipment":
 			break;
