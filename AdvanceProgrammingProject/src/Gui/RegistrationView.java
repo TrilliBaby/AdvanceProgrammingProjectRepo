@@ -129,6 +129,10 @@ public class RegistrationView extends JFrame {
 		JLabel lblNewLabel_6 = new JLabel("PASSWORD");
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GroupLayout gl_panel_1_1 = new GroupLayout(panel_1_1);
 		gl_panel_1_1.setHorizontalGroup(
 			gl_panel_1_1.createParallelGroup(Alignment.TRAILING)
