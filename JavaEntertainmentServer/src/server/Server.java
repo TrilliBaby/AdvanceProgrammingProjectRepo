@@ -1,6 +1,74 @@
 package server;
 
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class Server {
+    private ServerSocket serverSocket;
+    private static Connection mycon;
+    private static final String DB_URL = "jdbc:mysql://localhost:3307/javaentertainment";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "usbw";
+
+    public Server() {
+        try {
+            serverSocket = new ServerSocket(8888);
+            establishDatabaseConnection();
+            waitForRequests();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void establishDatabaseConnection() {
+        if (mycon == null) {
+            try {
+                mycon = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                System.out.println("Database connection established.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static Connection getDatabaseConnection() {
+        return mycon;
+    }
+
+    private void waitForRequests() {
+        System.out.println("Server is running and waiting for clients...");
+        while (true) {
+            try {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Client connected.");
+                new ClientHandler(clientSocket).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new Server();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/*package server;
+
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -13,7 +81,8 @@ import domain.Customer;
 import domain.Equipment;
 import domain.Rent;
 
-public class Server {
+public class Server extends Thread {
+	
 	private ServerSocket serverSocket;
 	private Socket connectionSocket;
 	private ObjectOutputStream os;
@@ -182,4 +251,4 @@ public class Server {
 
 	}
 
-}
+}*/
