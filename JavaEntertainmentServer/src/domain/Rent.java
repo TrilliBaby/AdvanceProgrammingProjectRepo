@@ -1,6 +1,11 @@
 package domain;
 
+
 public class Rent {
+	
+	private String rentId;
+	private String customerId; 
+    private String equipmentId;
 	private float amountOwed;
 	private DateTime date; 
 	private DateTime time;
@@ -11,6 +16,7 @@ public class Rent {
 
 	public Rent()
 	{
+		rentId = "";
 		amountOwed = 0;
 		date = new DateTime(); 
 		time = new DateTime();
@@ -20,8 +26,10 @@ public class Rent {
 		status = "";
 	}
 	
-	public Rent(float amountOwed, DateTime date, DateTime time, float cost, float amountPaid, DateTime duration, String status)
+	public Rent(String customerId, String equipmentId, float amountOwed, DateTime date, DateTime time, float cost, float amountPaid, DateTime duration, String status)
 	{
+		this.customerId = customerId;
+        this.equipmentId = equipmentId;
 		this.amountOwed = amountOwed;
 		this.date = date; 
 		this.time = time;
@@ -36,6 +44,7 @@ public class Rent {
 		if (r == null) {
             throw new IllegalArgumentException("Rent object cannot be null");
         }
+		this.rentId = r.rentId;
 		this.amountOwed = r.amountOwed;
 		this.date = r.date; 
 		this.time = r.time;
@@ -44,6 +53,39 @@ public class Rent {
 		this.duration = r.duration;
 		this.status = r.status;
 	}
+	
+	public String getRentId() {
+		return rentId;
+	}
+	
+	public void setRentId(String rentId) {
+		if (rentId == null || rentId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Rent ID cannot be empty");
+        }
+		this.rentId = rentId;
+	}
+	
+	public String getCustomerId() {
+        return customerId;
+    }
+    
+    public void setCustomerId(String customerId) {
+        if (customerId == null || customerId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Customer ID cannot be empty");
+        }
+        this.customerId = customerId;
+    }
+    
+    public String getEquipmentId() {
+        return equipmentId;
+    }
+    
+    public void setEquipmentId(String equipmentId) {
+        if (equipmentId == null || equipmentId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Equipment ID cannot be empty");
+        }
+        this.equipmentId = equipmentId;
+    }
 	
 	public float getAmountOwed() {
 		return amountOwed;
@@ -124,7 +166,8 @@ public class Rent {
 
 	@Override
 	public String toString() {
-		return "\nRent = " + amountOwed +
+		return "Rent ID = " + rentId +
+				"\nRent = " + amountOwed +
 				"\nDate = " + date +
 				"\nTime = " + time +
 				"\nCost = " + cost + 
@@ -133,6 +176,5 @@ public class Rent {
 				"\nStatus = " + status;
 		
 	}
-	
 	
 }
