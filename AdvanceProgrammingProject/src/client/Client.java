@@ -17,6 +17,7 @@ public class Client {
 	private Socket connectionSocket;
 	private ObjectOutputStream os;
 	private ObjectInputStream is;
+	private Boolean passw, user;
 	
 	public Client() {
 		try {
@@ -96,6 +97,24 @@ public class Client {
 		
 	}
 	
+	public void sendPassword(String passw) {
+		try {
+			os.writeObject(passw);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendUserName(String user) {
+		try {
+			os.writeObject(user);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void recieveResponse() {
 		switch(action) {
 		case "add customer":
@@ -105,9 +124,49 @@ public class Client {
 			break;
 		case "add rent":
 			break;
+		case "search UserName":
+			try {
+				user = (Boolean) is.readObject();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			break;
+		case "search password":
+			try {
+				passw = (Boolean) is.readObject();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			break;
 		}
 		
 		
+	}
+
+	public Boolean getPassw() {
+		return passw;
+	}
+
+	public void setPassw(Boolean passw) {
+		this.passw = passw;
+	}
+
+	public Boolean getUser() {
+		return user;
+	}
+
+	public void setUser(Boolean user) {
+		this.user = user;
 	}
 
 }

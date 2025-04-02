@@ -59,6 +59,15 @@ public class LoginView extends JInternalFrame{
 		setWindowProperties();
 		
 	}
+	
+	
+	public JTextField getUsernameTxtField() {
+		return usernameTxtField;
+	}
+	
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
 
 	public JButton getBtnNewButton() {
 		return btnNewButton;

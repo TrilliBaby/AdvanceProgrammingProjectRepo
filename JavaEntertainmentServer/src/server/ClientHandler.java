@@ -48,9 +48,49 @@ public class ClientHandler extends Thread {
             e.printStackTrace();
         }
     }
+    
+    private Boolean searchUserName(String user) {
+    	String sql = "SELECT * from EMPLOYEE WHERE UserName = ?";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, user);
+			results = stat.executeQuery();
+			
+			if(results.next()) {
+				return true;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return false;
+    	
+    }
+    
+    private Boolean searchPassword(String password) {
+    	String sql = "SELECT * from EMPLOYEE WHERE Password = ?";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, password);
+			results = stat.executeQuery();
+			
+			if(results.next()) {
+				return true;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return false;
+    	
+    }
 
     private void addCustomerToDb(Customer cus) {
-        String sql = "INSERT INTO CUSTOMER (cusID, name, dOB, age, address, email, phoneNumber, gender) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO CUSTOMER (custID, name, dOB, age, address, email, phoneNumber, gender) VALUES(?,?,?,?,?,?,?,?)";
         try {
             stat = mycon.prepareStatement(sql);
             stat.setString(1, cus.getCusID());
@@ -247,6 +287,14 @@ public class ClientHandler extends Thread {
                     Rent rent = (Rent) is.readObject();
                     addRentsToDb(rent);
                     break;
+                case "search password":
+                	String password = (String) is.readObject();
+                	os.writeObject(searchPassword(password));
+                	break;
+                case "search UserName":
+                	String user = (String) is.readObject();
+                	os.writeObject(searchUserName(user));
+                	break;
                 default:
                     System.out.println("Unknown action: " + action);
             }

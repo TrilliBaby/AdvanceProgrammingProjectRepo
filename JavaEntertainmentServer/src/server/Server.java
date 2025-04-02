@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class Server {
     private ServerSocket serverSocket;
+    Socket clientSocket;
     private static Connection mycon;
     private static final String DB_URL = "jdbc:mysql://localhost:3307/javaentertainment";
     private static final String DB_USER = "root";
@@ -43,12 +44,19 @@ public class Server {
         System.out.println("Server is running and waiting for clients...");
         while (true) {
             try {
-                Socket clientSocket = serverSocket.accept();
+                clientSocket = serverSocket.accept();
                 System.out.println("Client connected.");
                 new ClientHandler(clientSocket).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+           try {
+			clientSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+            
         }
     }
 

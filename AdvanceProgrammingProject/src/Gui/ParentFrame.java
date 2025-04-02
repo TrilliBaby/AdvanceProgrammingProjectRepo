@@ -93,6 +93,7 @@ public class ParentFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//desktop.removeAll();
+				
 				desktop.add(loginViewObj);
 			}
 			
@@ -138,8 +139,30 @@ public class ParentFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//desktop.remove(loginViewObj);
-				desktop.add(new Equipment());
+				//
+				Client cliObj = new Client();
+				Boolean user = false;
+				Boolean passw = false;
+				
+				cliObj.sendAction("search UserName");
+				cliObj.sendUserName(loginViewObj.getUsernameTxtField().getText());
+				cliObj.recieveResponse();
+				user = cliObj.getUser();
+				
+				
+				cliObj = new Client();
+				cliObj.sendAction("search password");
+				cliObj.sendPassword(loginViewObj.getPasswordField().getText());
+				cliObj.recieveResponse();
+				passw = cliObj.getPassw();
+				
+				if(user && passw == true) {
+					desktop.removeAll();
+				}else {
+					JOptionPane.showMessageDialog(loginViewObj, "Incorrect user name or password", "password authentication", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				
 			}
 			
 		});
@@ -165,6 +188,8 @@ public class ParentFrame extends JFrame{
 			}
 				
 		});
+		
+		
 		
 	}
 	

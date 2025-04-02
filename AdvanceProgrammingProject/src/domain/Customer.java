@@ -9,6 +9,7 @@ public class Customer extends Person implements Serializable {
     private String phoneNumber;
     private char gender;
 
+
     public Customer(Customer c) {
         super(c);
         if (c == null) {
@@ -17,6 +18,7 @@ public class Customer extends Person implements Serializable {
         this.cusID = c.cusID;
         this.phoneNumber = c.phoneNumber;
         this.gender = c.gender;
+    
     }
 
     public Customer() {
@@ -24,6 +26,7 @@ public class Customer extends Person implements Serializable {
         this.cusID = "";
         this.phoneNumber = "";
         this.gender = ' ';
+       
     }
 
     public Customer(Person p, String cusID, String phoneNumber, char gender) {
@@ -31,9 +34,12 @@ public class Customer extends Person implements Serializable {
         setCusID(cusID);
         setPhoneNumber(phoneNumber);
         setGender(gender);
+ 
     }
+    
+    
 
-    public String getCusID() {
+	public String getCusID() {
         return cusID;
     }
 
@@ -77,5 +83,6 @@ public class Customer extends Person implements Serializable {
                "\n  Phone Number = " + phoneNumber +
                "\n  Email = " + email +
                "\n  Address = " + address;
+        	
     }
 }
