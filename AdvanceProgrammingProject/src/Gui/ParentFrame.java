@@ -33,6 +33,8 @@ public class ParentFrame extends JFrame{
 	private JMenuItem invoiceItem;
 	private JMenuItem reportItem;
 	
+	private int loginVal = 0;
+	
 	
 	public void InitializeComponents() {
 		menubar = new JMenuBar();
@@ -112,7 +114,10 @@ public class ParentFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				desktop.add(cusViewObj);
+				if(loginVal == 1) {
+					desktop.add(cusViewObj);
+
+				}
 			}
 			
 		});
@@ -157,6 +162,7 @@ public class ParentFrame extends JFrame{
 				passw = cliObj.getPassw();
 				
 				if(user && passw == true) {
+					loginVal = 1;
 					desktop.removeAll();
 				}else {
 					JOptionPane.showMessageDialog(loginViewObj, "Incorrect user name or password", "password authentication", JOptionPane.INFORMATION_MESSAGE);
