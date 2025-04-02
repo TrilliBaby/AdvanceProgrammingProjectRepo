@@ -75,6 +75,7 @@ public class ParentFrame extends JFrame{
 	
 	public void addComponentsToWindow() {
 		//desktop.add(new Equipment());
+		desktop.add(loginViewObj);
 		this.add(desktop);
 	}
 	

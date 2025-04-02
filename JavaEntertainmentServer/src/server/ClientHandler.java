@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -69,6 +70,62 @@ public class ClientHandler extends Thread {
             e.printStackTrace();
         }
     }
+    
+    private void readAllCustomers() {
+    	ArrayList<Customer> cusArr = new ArrayList<>();
+    	//Customer cusObj = new Customer();
+    	String sql = "Select * FROM Customer";
+    	
+    	try {
+			stat = mycon.prepareStatement(sql);
+			results = stat.executeQuery();
+			
+			while(results.next()) {
+				String id = results.getString(1);
+				String name = results.getString(2);
+				String dob = String.valueOf(results.getDate(3));
+				int age = results.getInt(4);
+				String addi = results.getString(5);
+				String email = results.getString(6);
+				String phone = results.getString(7);
+				String gender = results.getString(8);
+				
+				cusArr.add(new Customer());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
+    
+    private void updateCustomerName(String cusId, String name) {
+    	String sql = "UPDATE Customer SET name = ? WHERE cusID = ?";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, name);
+			stat.setString(2, cusId);
+			
+			stat.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
+    
+    private void deleteCustomer(String cusId) {
+    	String sql = "DELETE FROM Customer WHERE cusID = ?";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, cusId);
+			int deletedRows = stat.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
 
     private void addEquipmentToDb(Equipment equip) {
         String sql = "INSERT INTO EQUIPMENT(equipId, name, type, status, cost, amount) VALUES(?,?,?,?,?,?)";
@@ -89,6 +146,19 @@ public class ClientHandler extends Thread {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void deleteEquipment(String equipId) {
+    	String sql = "DELETE FROM Equipment WHERE equipID = ?";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, equipId);
+			int deletedRows = stat.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
 
 
@@ -141,6 +211,19 @@ public class ClientHandler extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void deleteRents(String rentId) {
+    	String sql = "DELETE FROM Rents WHERE rentID = ?";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, rentId);
+			int deletedRows = stat.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
 
 
