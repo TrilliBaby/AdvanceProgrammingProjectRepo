@@ -9,8 +9,8 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 import domain.Customer;
-import javaEntertainment.Equipment;
-import javaEntertainment.Rent;
+import domain.Equipment;
+import domain.Rent;
 
 public class Client {
 	private String action;
@@ -87,7 +87,7 @@ public class Client {
 		
 	}
 	
-	public void sendRents(Rent rent) {
+	public void sendRent(Rent rent) {
 		try {
 			os.writeObject(rent);
 		} catch (IOException e) {
@@ -114,6 +114,7 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public void recieveResponse() {
 		switch(action) {

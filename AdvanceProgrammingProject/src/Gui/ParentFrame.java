@@ -11,6 +11,8 @@ import javax.swing.*;
 import client.Client;
 import domain.Customer;
 import domain.Person;
+import domain.Rent;
+import domain.Equipment;
 
 public class ParentFrame extends JFrame{
 	private JMenuBar menubar;
@@ -193,6 +195,33 @@ public class ParentFrame extends JFrame{
 					
 			}
 				
+		});
+		
+		equipViewObj.getAddBtn().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String type = equipViewObj.getTypeComboBox().getSelectedItem().toString();
+				Equipment equip = new Equipment(equipViewObj.getEquipIDText().getText(), equipViewObj.getNameText().getText(),type ,Float.parseFloat(equipViewObj.getCostText().getText()));
+				Client cliObj = new Client();
+				cliObj.sendAction("add equipment");
+				cliObj.sendEquipment(equip);
+				
+			}
+			
+		});
+		
+		rentsViewObj.getSubmitBtn().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Rent rent = new Rent(rentsViewObj.getCusIDText().getText(), rentsViewObj.getEquipIDText().getText(), Integer.parseInt(rentsViewObj.getDurationText().getText()));
+				Client cliObj = new Client();
+				cliObj.sendAction("add rent");
+				cliObj.sendRent(rent);
+				
+			}
+			
 		});
 		
 		

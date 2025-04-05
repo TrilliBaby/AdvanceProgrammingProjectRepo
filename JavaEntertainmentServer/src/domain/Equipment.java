@@ -16,15 +16,13 @@ public class Equipment implements Serializable {
         equipId = "";
         name = "";
         type = "";
-        status = "";
         cost = 0;
     }
 
-    public Equipment(String equipId, String name, String type, String status, float cost) {
+    public Equipment(String equipId, String name, String type, float cost) {
         setEquipId(equipId);
         setName(name);
         setType(type);
-        setStatus(status);
         setCost(cost);
     }
 

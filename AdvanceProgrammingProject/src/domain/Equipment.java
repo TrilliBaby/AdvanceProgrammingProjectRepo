@@ -1,4 +1,4 @@
-package javaEntertainment;
+package domain;
 
 import java.io.Serializable;
 
@@ -20,12 +20,11 @@ public class Equipment implements Serializable {
         cost = 0;
     }
 
-    public Equipment(String equipId, String name, String type, String status, float cost) {
-        setEquipId(equipId);
-        setName(name);
-        setType(type);
-        setStatus(status);
-        setCost(cost);
+    public Equipment(String equipId, String name, String type, float cost) {
+        this.equipId = equipId;
+        this.name = name;
+        this.type = type;
+        this.cost = cost;
     }
 
     public Equipment(Equipment e) {

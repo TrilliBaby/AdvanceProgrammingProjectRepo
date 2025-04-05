@@ -8,11 +8,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import domain.Customer;
+import domain.Employee;
 import domain.Equipment;
 import domain.Rent;
 
@@ -88,6 +93,26 @@ public class ClientHandler extends Thread {
     	return false;
     	
     }
+    
+    private Boolean searchCustomer(String custID) {
+    	String sql = "SELECT * from CUSTOMER WHERE custID = ?";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, custID);
+			results = stat.executeQuery();
+			
+			if(results.next()) {
+				return true;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return false;
+    	
+    }
 
     private void addCustomerToDb(Customer cus) {
         String sql = "INSERT INTO CUSTOMER (custID, name, dOB, age, address, email, phoneNumber, gender) VALUES(?,?,?,?,?,?,?,?)";
@@ -110,6 +135,29 @@ public class ClientHandler extends Thread {
             e.printStackTrace();
         }
     }
+    
+    private void addEmployeeToDb(Employee emp) {
+        String sql = "INSERT INTO CUSTOMER (userName, password, trn, name, dOB, age, address, email) VALUES(?,?,?,?,?,?,?,?)";
+        try {
+            stat = mycon.prepareStatement(sql);
+            stat.setString(1, emp.getUserName());
+            stat.setString(2, emp.getPassword());
+            stat.setString(3, emp.getTrn());
+            stat.setString(4, emp.getName());
+            //stat.setString(5, emp.getAddress());
+            stat.setInt(6, emp.getAge());
+            stat.setString(7, emp.getAddress());
+            stat.setString(8, emp.getEmail());
+
+            int rowsAdded = stat.executeUpdate();
+            if (rowsAdded > 0) {
+                System.out.println("Customer added successfully.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     
     private void readAllCustomers() {
     	ArrayList<Customer> cusArr = new ArrayList<>();
@@ -154,29 +202,16 @@ public class ClientHandler extends Thread {
     	
     }
     
-    private void deleteCustomer(String cusId) {
-    	String sql = "DELETE FROM Customer WHERE cusID = ?";
-    	try {
-			stat = mycon.prepareStatement(sql);
-			stat.setString(1, cusId);
-			int deletedRows = stat.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    }
+    
 
     private void addEquipmentToDb(Equipment equip) {
-        String sql = "INSERT INTO EQUIPMENT(equipId, name, type, status, cost, amount) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO EQUIPMENT(equipId, name, type, cost) VALUES(?,?,?,?)";
         try {
             stat = mycon.prepareStatement(sql);
             stat.setString(1, equip.getEquipId()); 
             stat.setString(2, equip.getName());     
-            stat.setString(3, equip.getType());    
-            stat.setString(4, equip.getStatus());   
-            stat.setDouble(5, equip.getAmount());  
-            stat.setDouble(6, equip.getCost());    
+            stat.setString(3, equip.getType());       
+            stat.setDouble(4, equip.getCost());    
             
             int rowsAdded = stat.executeUpdate();
             if (rowsAdded > 0) {
@@ -188,53 +223,57 @@ public class ClientHandler extends Thread {
         }
     }
     
-    private void deleteEquipment(String equipId) {
-    	String sql = "DELETE FROM Equipment WHERE equipID = ?";
+    private Boolean searchEquipment(String equipId) {
+    	String sql = "SELECT * from EQUIPMENT WHERE equipId = ?";
     	try {
 			stat = mycon.prepareStatement(sql);
 			stat.setString(1, equipId);
-			int deletedRows = stat.executeUpdate();
+			results = stat.executeQuery();
+			
+			if(results.next()) {
+				return true;
+				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
+    	return false;
+    	
     }
 
-
     private void addRentsToDb(Rent rent) {
-        String sql = "INSERT INTO RENTS (customerId, equipmentId, amount_owed, rent_date, rent_time, cost, amount_paid, duration, status, " +
-                     "date_day, date_month, date_year, time_hours, time_minutes, time_seconds, " +
-                     "duration_hours, duration_minutes, duration_seconds) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO RENTS (customerId, equipmentId, amount, rent_date, amount_paid, duration) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql2 = "SELECT * FROM EQUIPMENT WHERE equipId = ?";
+        Date date = new Date();
+        LocalTime localTime = LocalTime.now();
         
         try {
+        	PreparedStatement pstat = mycon.prepareStatement(sql2);
+        	pstat.setString(1, rent.getEquipmentId());
+        	ResultSet rs = pstat.executeQuery();
+        	
+        	double cost = 0;
+        	
+        	if(rs.next()) {
+        		cost = rs.getDouble(4);
+        	}
+        	
+        	
+        	
+        	double totalAmount = cost * rent.getDuration();
+        	
             stat = mycon.prepareStatement(sql);
   
             stat.setString(1, rent.getCustomerId());
             stat.setString(2, rent.getEquipmentId());
-            stat.setDouble(3, rent.getAmountOwed());
-            stat.setString(4, rent.getDate().toString()); 
-            stat.setString(5, rent.getTime().toString()); 
-            stat.setDouble(6, rent.getCost());
-            stat.setDouble(7, rent.getAmountPaid());
-            stat.setString(8, rent.getDuration().toString()); 
-            stat.setString(9, rent.getStatus());
-            
-            // Decompose date components
-            stat.setInt(10, rent.getDate().getDay());
-            stat.setInt(11, rent.getDate().getMonth());
-            stat.setInt(12, rent.getDate().getYear());
-            
-            // Decompose time components
-            stat.setInt(13, rent.getTime().getHours());
-            stat.setInt(14, rent.getTime().getMinutes());
-            stat.setInt(15, rent.getTime().getSeconds());
-            
-            // Decompose duration components
-            stat.setInt(16, rent.getDuration().getHours());
-            stat.setInt(17, rent.getDuration().getMinutes());
-            stat.setInt(18, rent.getDuration().getSeconds());
+            stat.setDouble(3, totalAmount);
+            stat.setDate(4, new java.sql.Date(date.getTime())); 
+            //stat.setDouble(6, cost);
+            stat.setDouble(5, 100);
+            stat.setInt(6, rent.getDuration()); 
+       
             
             int rowsAdded = stat.executeUpdate();
             if (rowsAdded > 0) {
@@ -253,20 +292,23 @@ public class ClientHandler extends Thread {
         }
     }
     
-    private void deleteRents(String rentId) {
-    	String sql = "DELETE FROM Rents WHERE rentID = ?";
+    private void reportForRents(String cusId) {
+    	String sql = "SELECT * FROM RENTS WHERE customerId = ?";
     	try {
 			stat = mycon.prepareStatement(sql);
-			stat.setString(1, rentId);
-			int deletedRows = stat.executeUpdate();
+			stat.setString(1, cusId);
+			ResultSet rs = stat.executeQuery();
+			
+			while(rs.next()) {
+				
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
     }
-
-
+    
+   
 
     @Override
     public void run() {

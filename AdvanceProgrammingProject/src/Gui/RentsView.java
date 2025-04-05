@@ -14,15 +14,11 @@ public class RentsView extends JInternalFrame{
 	private JPanel panel;
 	private JLabel equipIDLabel;
 	private JLabel cusIDLabel;
-	private JLabel day;
-	private JLabel month;
-	private JLabel year;
+	private JLabel durationLabel;
 	
 	private JTextField equipIDText;
 	private JTextField cusIDText;
-	private JTextField dayTxt;
-	private JTextField monthTxt;
-	private JTextField yearTxt;
+	private JTextField durationText;
 	
 	private JButton submitBtn;
 	
@@ -34,15 +30,12 @@ public class RentsView extends JInternalFrame{
 		
 		equipIDLabel = new JLabel("Enter ID of Equipment being rented: ");
 		cusIDLabel = new JLabel("Enter ID of Customer renting equipment: ");
-		day = new JLabel("Day Rented: ");
-		month = new JLabel("Month Rented: ");
-		year = new JLabel("Year Rented: ");
+		durationLabel = new JLabel("Enter the number of days that the equipment will be rented for");
+		
 		
 		equipIDText = new JTextField(15);
 		cusIDText = new JTextField(15);
-		dayTxt = new JTextField(15);
-		monthTxt = new JTextField(15);
-		yearTxt = new JTextField(15);	
+		durationText = new JTextField(15);	
 		
 		submitBtn = new JButton("Submit");
 		
@@ -75,32 +68,13 @@ public class RentsView extends JInternalFrame{
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.anchor = GridBagConstraints.WEST;
-		panel.add(day, gbc);
+		panel.add(durationLabel, gbc);
 		
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		gbc.anchor = GridBagConstraints.WEST;
-		panel.add(dayTxt,gbc);
+		panel.add(durationText,gbc);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		gbc.anchor = GridBagConstraints.WEST;
-		panel.add(month,gbc);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 3;
-		gbc.anchor = GridBagConstraints.WEST;
-		panel.add(monthTxt,gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 4;
-		gbc.anchor = GridBagConstraints.WEST;
-		panel.add(year, gbc);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 4;
-		gbc.anchor = GridBagConstraints.WEST;
-		panel.add(yearTxt, gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 6;
@@ -109,6 +83,38 @@ public class RentsView extends JInternalFrame{
 		panel.add(submitBtn, gbc);
 	}
 	
+	public JTextField getEquipIDText() {
+		return equipIDText;
+	}
+
+	public void setEquipIDText(JTextField equipIDText) {
+		this.equipIDText = equipIDText;
+	}
+
+	public JTextField getCusIDText() {
+		return cusIDText;
+	}
+
+	public void setCusIDText(JTextField cusIDText) {
+		this.cusIDText = cusIDText;
+	}
+
+	public JTextField getDurationText() {
+		return durationText;
+	}
+
+	public void setDurationText(JTextField durationText) {
+		this.durationText = durationText;
+	}
+
+	public JButton getSubmitBtn() {
+		return submitBtn;
+	}
+
+	public void setSubmitBtn(JButton submitBtn) {
+		this.submitBtn = submitBtn;
+	}
+
 	public void addPanelToFrame() {
 		this.add(panel);
 		

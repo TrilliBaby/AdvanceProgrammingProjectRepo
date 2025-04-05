@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
 import client.Client;
 import domain.Customer;
 import domain.Person;
@@ -48,6 +50,7 @@ public class CustomerView extends JInternalFrame{
 	private JTextField emailText;
 	
 	private DateFormat dateFormat;
+	private JDateChooser dateChooser;
 	
 	private JButton addBtn;
 	
@@ -83,6 +86,11 @@ public class CustomerView extends JInternalFrame{
 		emailText = new JTextField(15);
 		
 		addBtn = new JButton("Add Customer");
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 	
 		
 	}

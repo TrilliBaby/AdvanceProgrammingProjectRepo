@@ -1,39 +1,31 @@
 package domain;
 
+import java.io.Serializable;
 
-public class Rent {
+public class Rent implements Serializable{
 	
 	private String rentId;
 	private String customerId; 
     private String equipmentId;
 	private float amountOwed;
-	private DateTime date; 
-	private DateTime time;
-	private float cost;
 	private float amountPaid; 
-	private DateTime duration;
+	private int duration;
 	private String status;
 
 	public Rent()
 	{
 		rentId = "";
 		amountOwed = 0;
-		date = new DateTime(); 
-		time = new DateTime();
-		cost = 0;
 		amountPaid = 0; 
-		duration = new DateTime();
+		duration = 0;
 		status = "";
 	}
 	
-	public Rent(String customerId, String equipmentId, float amountOwed, DateTime date, DateTime time, float cost, float amountPaid, DateTime duration, String status)
+	public Rent(String customerId, String equipmentId, int duration)
 	{
 		this.customerId = customerId;
         this.equipmentId = equipmentId;
 		this.amountOwed = amountOwed;
-		this.date = date; 
-		this.time = time;
-		this.cost = cost;
 		this.amountPaid = amountPaid; 
 		this.duration = duration;
 		this.status = status;
@@ -46,9 +38,6 @@ public class Rent {
         }
 		this.rentId = r.rentId;
 		this.amountOwed = r.amountOwed;
-		this.date = r.date; 
-		this.time = r.time;
-		this.cost = r.cost;
 		this.amountPaid = r.amountPaid; 
 		this.duration = r.duration;
 		this.status = r.status;
@@ -98,38 +87,7 @@ public class Rent {
 		this.amountOwed = amountOwed;
 	}
 	
-	public DateTime getDate() {
-		return date;
-	}
-	
-	public void setDate(DateTime date) {
-		if (date == null) {
-            throw new IllegalArgumentException("There must be a time");
-        }
-		this.date = date;
-	}
-	
-	public DateTime getTime() {
-		return time;
-	}
-	
-	public void setTime(DateTime time) {
-		if (time == null) {
-            throw new IllegalArgumentException("There must be a time");
-        }
-		this.time = time;
-	}
-	
-	public float getCost() {
-		return cost;
-	}
-	
-	public void setCost(float cost) {
-		if (cost < 0) {
-            throw new IllegalArgumentException("Cost cannot be negative");
-        }
-		this.cost = cost;
-	}
+
 	
 	public float getAmountPaid() {
 		return amountPaid;
@@ -142,14 +100,11 @@ public class Rent {
 		this.amountPaid = amountPaid;
 	}
 	
-	public DateTime getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 	
-	public void setDuration(DateTime duration) {
-		if (duration == null) {
-			throw new IllegalArgumentException("There must be a duration");
-		}
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 	
@@ -168,9 +123,6 @@ public class Rent {
 	public String toString() {
 		return "Rent ID = " + rentId +
 				"\nRent = " + amountOwed +
-				"\nDate = " + date +
-				"\nTime = " + time +
-				"\nCost = " + cost + 
 				"\nAmount Paid = " + amountPaid +
 				"\nDuration = " + duration +
 				"\nStatus = " + status;

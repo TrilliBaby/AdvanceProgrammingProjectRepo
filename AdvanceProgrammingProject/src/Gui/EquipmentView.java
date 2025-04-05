@@ -28,6 +28,26 @@ public class EquipmentView extends JInternalFrame{
 	
 	String[] types = new String[] {"Electronic", "Music", "Lighting", "Sound"}; 
 	
+	public JTextField getEquipIDText() {
+		return equipIDText;
+	}
+	
+	public JTextField getCostText() {
+		return costText;
+	}
+	
+	public JTextField getNameText() {
+		return nameText;
+	}
+	
+	public JButton getAddBtn() {
+		return addBtn;
+	}
+	
+	public JComboBox getTypeComboBox() {
+		return typeComboBox;
+	}
+	
 	public void initialize() {
 		equipIDLabel = new JLabel("Equipment ID: ");
 		nameLabel = new JLabel("Equipment Name: ");
@@ -57,7 +77,7 @@ public class EquipmentView extends JInternalFrame{
 		panel.add(equipIDLabel, gbc);
 		
 		gbc.gridx = 1;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		panel.add(nameText, gbc);
 		
 		gbc.gridx = 0;
@@ -65,7 +85,7 @@ public class EquipmentView extends JInternalFrame{
 		panel.add(nameLabel, gbc);
 		
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.EAST;
 		panel.add(equipIDText, gbc);
 		
