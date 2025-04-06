@@ -186,10 +186,27 @@ public class DashboardView extends JFrame {
 		lastNameTxt.setBounds(250, 200, 300, 30);
 		mainUtilityPanel.add(lastNameTxt);
 		
-		JLabel genderLabel = new JLabel("Last Name:");
-		JTextField genderTxt = new JTextField("Gender");
-		genderTxt.setBounds(250, 250, 300, 30);
-		mainUtilityPanel.add(genderTxt);
+		JLabel maleLabel = new JLabel("Male:");
+		maleLabel.setBounds(0, 200, 100, 50);
+		mainUtilityPanel.add(maleLabel);
+
+		JRadioButton male =  new JRadioButton();
+		male.setBounds(300, 250, 50, 30);
+		mainUtilityPanel.add(male);
+		
+		JLabel femaleLabel = new JLabel("Female:");
+		maleLabel.setBounds(10, 200, 100, 50);
+		mainUtilityPanel.add(femaleLabel);
+
+		JRadioButton female = new JRadioButton();
+		female.setBounds(450, 250, 50, 30);
+
+		ButtonGroup btnGroup = new ButtonGroup();
+		btnGroup.add(female);
+		btnGroup.add(male);
+		
+		mainUtilityPanel.add(female);
+		
 		
         JDateChooser calendar =  new JDateChooser();
         calendar.setBounds(250, 300, 300, 30);
@@ -231,21 +248,97 @@ public class DashboardView extends JFrame {
 		mainUtilityPanel.setBackground(new Color(255, 255, 255));
 		mainUtilityPanel.setLayout(null);
 
-		JButton button = new JButton();
 		
+		JPanel display1Panel = new JPanel();
+		display1Panel.setBackground(new Color(128, 128, 255));
+		display1Panel.setBounds(600, 128, 400, 400);
+		display1Panel.setLayout(null);
+		mainUtilityPanel.add(display1Panel);
 		
+		JLabel equipmentRegistryLabel = new JLabel("Equipment Registry");
+		equipmentRegistryLabel.setBounds(250, 200, 300, 50);
+		mainUtilityPanel.add(equipmentRegistryLabel);
+
+		
+		JTextField equipmentNameTxt = new JTextField("Equipment Name");
+		equipmentNameTxt.setBounds(250, 250, 300, 30);
+		mainUtilityPanel.add(equipmentNameTxt);
+		
+		String type[] = {};
+		JComboBox<String> combobox= new JComboBox<String>(type);
+		combobox.setBounds(250, 300, 300, 30);
+		mainUtilityPanel.add(combobox);
+		
+		JTextField equipmentPriceTxt = new JTextField("Equipment Price");
+		equipmentPriceTxt.setBounds(250, 350, 300, 30);
+		mainUtilityPanel.add(equipmentPriceTxt);
+		
+	
+		JButton submit = new JButton("ADD EQUIPMENT");
+		submit.setBounds(250, 400, 300, 30);
+		submit.setBackground(new Color(128, 128, 255));
+		
+		mainUtilityPanel.add(submit);
 		
 		return mainUtilityPanel;
 		
 	}
+	
+	
 	private JPanel eventPanelLayout() {
 		JPanel mainUtilityPanel = new JPanel();
 		mainUtilityPanel.setBackground(new Color(255, 255, 255));
 		mainUtilityPanel.setLayout(null);
+
+		
+		JPanel display1Panel = new JPanel();
+		display1Panel.setBackground(new Color(128, 128, 255));
+		display1Panel.setBounds(600, 128, 400, 400);
+		display1Panel.setLayout(null);
+		mainUtilityPanel.add(display1Panel);
+		
+		JLabel eventRegistryLabel = new JLabel("Event Registry");
+		eventRegistryLabel.setBounds(250, 100, 300, 50);
+		mainUtilityPanel.add(eventRegistryLabel);
+
+		
+		//JLabel eventNameLabel = new JLabel("First Name:");
+		JTextField eventNameTxt = new JTextField("Name of Event");
+		eventNameTxt.setBounds(250, 150, 300, 30);
+		mainUtilityPanel.add(eventNameTxt);
+		
+		//JLabel lastNameLabel = new JLabel("Last Name:");
+		JTextField addressTxt = new JTextField("Address");
+		addressTxt.setBounds(250, 200, 300, 30);
+		mainUtilityPanel.add(addressTxt);
+		
+		//JLabel genderLabel = new JLabel("Last Name:");
+		JTextField durationTxt = new JTextField("Duration");
+		durationTxt.setBounds(250, 250, 300, 30);
+		mainUtilityPanel.add(durationTxt);
+		
+        JDateChooser eventDate =  new JDateChooser(null, "Date of Event");
+        eventDate.setBounds(250, 300, 300, 30);
+        mainUtilityPanel.add(eventDate);
+        
+		JTextField eventTime = new JTextField("Time Of Event");
+		eventTime.setBounds(250, 350, 300, 30);
+		mainUtilityPanel.add(eventTime);
+		
+		String status[] = {"--Status--","Active","Pending"};
+		JComboBox<String> statusCombo = new JComboBox<String>(status);
+		statusCombo.setSelectedIndex(0);
+		statusCombo.setBounds(250, 400, 300, 30);
+		mainUtilityPanel.add(statusCombo);
+		
+		JButton submit = new JButton("ADD EVENT");
+		submit.setBounds(250, 450, 300, 30);
+		submit.setBackground(new Color(128, 128, 255));
+		
+		mainUtilityPanel.add(submit);
 		
 		
 		return mainUtilityPanel;
-		
 	}
 	private JPanel reportPanelLayout() {
 		JPanel mainUtilityPanel = new JPanel();
