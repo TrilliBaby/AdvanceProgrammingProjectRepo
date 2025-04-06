@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Person implements Serializable{
 	
 	protected String name;
 	protected int age;
-	protected String dOB;
+	protected Date dOB;
 	protected String address;
 	protected String email;
 	
@@ -29,15 +30,15 @@ public class Person implements Serializable{
 	public Person () {
 		this.name= "";
 		this.age = 0;
-		this.dOB = "";
+		this.dOB = new Date();
 		this.address = "";
 		this.email = "";
 	}
 	
-	public Person(String name, int age, String dOB, String address, String email) {
+	public Person(String name, int age, Date date, String address, String email) {
 		this.name = name;
 		this.age = age;
-		this.dOB = dOB;
+		this.dOB = date;
 		this.address = address;
 		this.email = email;
 	}
@@ -70,24 +71,17 @@ public class Person implements Serializable{
 			throw new IllegalArgumentException("Age cannot be negative");
 		}
 		
-		if (!isAgeValid(dOB, age)) {
-            throw new IllegalArgumentException("The age does not match the date of birth.");
-        }
+
 		this.age = age;
 	}
 
-	public String getdOB() {
+	public Date getdOB() {
 		return dOB;
 	}
 
-	public void setdOB(String dOB) {
-		if (dOB == null || dOB.trim().isEmpty()) {
-			throw new IllegalArgumentException("You must enter a Date of birth");
-		}
+	public void setdOB(Date dOB) {
 		
-		if (!isAgeValid(dOB, age)) {
-            throw new IllegalArgumentException("The Date of birth does not match the age");
-        }
+		
 		this.dOB = dOB;
 	}
 

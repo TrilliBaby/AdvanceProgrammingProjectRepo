@@ -2,20 +2,29 @@ package Gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Date;
+
 import javax.swing.*;
 
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
-public class DashboardView extends JFrame {
+import client.Client;
+import domain.Customer;
+import domain.Equipment;
+import domain.Person;
+import domain.Event;
+
+public class DashboardView extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	private CardLayout cardLayout;
 	private JPanel mainPanel;
+	
 
-
+/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
@@ -25,7 +34,7 @@ public class DashboardView extends JFrame {
 				e.printStackTrace();
 			}
 		});
-	}
+	}*/
 
 	public DashboardView() {
 		setVisible(true);
@@ -176,15 +185,15 @@ public class DashboardView extends JFrame {
 		mainUtilityPanel.add(customerRegistryLabel);
 
 		
-		JLabel firstNameLabel = new JLabel("First Name:");
-		JTextField firstNameTxt = new JTextField("First Name");
-		firstNameTxt.setBounds(250, 150, 300, 30);
-		mainUtilityPanel.add(firstNameTxt);
+		JLabel cusIdLabel = new JLabel("Customer ID:" );
+		JTextField cusIdTxt = new JTextField("Customer ID");
+		cusIdTxt.setBounds(250, 150, 300, 30);
+		mainUtilityPanel.add(cusIdTxt);
 		
-		JLabel lastNameLabel = new JLabel("Last Name:");
-		JTextField lastNameTxt = new JTextField("Last Name");
-		lastNameTxt.setBounds(250, 200, 300, 30);
-		mainUtilityPanel.add(lastNameTxt);
+		JLabel nameLabel = new JLabel("Enter Name:");
+		JTextField nameTxt = new JTextField("Name");
+		nameTxt.setBounds(250, 200, 300, 30);
+		mainUtilityPanel.add(nameTxt);
 		
 		JLabel maleLabel = new JLabel("Male:");
 		maleLabel.setBounds(0, 200, 100, 50);
@@ -237,6 +246,33 @@ public class DashboardView extends JFrame {
 		submit.setBounds(250, 500, 300, 30);
 		submit.setBackground(new Color(128, 128, 255));
 		
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				char gen;
+				
+				if(male.isSelected()) {
+						gen = 'M';
+				}
+				else {
+					gen = 'F';
+				}
+				
+				Date date = new Date();
+				int year = date.getYear();
+				int age = year - calendar.getDate().getYear();
+				
+				Customer cus = new Customer(new Person(nameTxt.getText(),age, calendar.getDate(), addressTxt.getText(), emailTxt.getText()), cusIdTxt.getText(), phoneNumberTxt.getText(), gen);
+				Client cliObj = new Client();
+				cliObj.sendAction("add customer");
+				cliObj.sendCustomer(cus);
+				cliObj.recieveResponse();
+				
+			}
+			
+		});
+		
 		mainUtilityPanel.add(submit);
 		
 		
@@ -260,23 +296,41 @@ public class DashboardView extends JFrame {
 		mainUtilityPanel.add(equipmentRegistryLabel);
 
 		
+		JTextField equipmentIdTxt = new JTextField("Equipment ID");
+		equipmentIdTxt.setBounds(250, 250, 300, 30);
+		mainUtilityPanel.add(equipmentIdTxt);
+		
 		JTextField equipmentNameTxt = new JTextField("Equipment Name");
-		equipmentNameTxt.setBounds(250, 250, 300, 30);
+		equipmentNameTxt.setBounds(250, 300, 300, 30);
 		mainUtilityPanel.add(equipmentNameTxt);
 		
-		String type[] = {};
+		String type[] = {"electronic", "non-electronic"};
 		JComboBox<String> combobox= new JComboBox<String>(type);
-		combobox.setBounds(250, 300, 300, 30);
+		combobox.setBounds(250, 350, 300, 30);
 		mainUtilityPanel.add(combobox);
 		
 		JTextField equipmentPriceTxt = new JTextField("Equipment Price");
-		equipmentPriceTxt.setBounds(250, 350, 300, 30);
+		equipmentPriceTxt.setBounds(250, 400, 300, 30);
 		mainUtilityPanel.add(equipmentPriceTxt);
 		
 	
 		JButton submit = new JButton("ADD EQUIPMENT");
-		submit.setBounds(250, 400, 300, 30);
+		submit.setBounds(250, 450, 300, 30);
 		submit.setBackground(new Color(128, 128, 255));
+		
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String type = combobox.getSelectedItem().toString();
+				Equipment equip = new Equipment(equipmentIdTxt.getText(), equipmentNameTxt.getText(),type ,Float.parseFloat(equipmentPriceTxt.getText()));
+				Client cliObj = new Client();
+				cliObj.sendAction("add equipment");
+				cliObj.sendEquipment(equip);
+				
+			}
+			
+		});
 		
 		mainUtilityPanel.add(submit);
 		
@@ -302,38 +356,56 @@ public class DashboardView extends JFrame {
 		mainUtilityPanel.add(eventRegistryLabel);
 
 		
+		JTextField eventIdTxt = new JTextField("Event ID");
+		eventIdTxt.setBounds(250, 150, 300, 30);
+		mainUtilityPanel.add(eventIdTxt);
+		
 		//JLabel eventNameLabel = new JLabel("First Name:");
 		JTextField eventNameTxt = new JTextField("Name of Event");
-		eventNameTxt.setBounds(250, 150, 300, 30);
+		eventNameTxt.setBounds(250, 200, 300, 30);
 		mainUtilityPanel.add(eventNameTxt);
 		
 		//JLabel lastNameLabel = new JLabel("Last Name:");
 		JTextField addressTxt = new JTextField("Address");
-		addressTxt.setBounds(250, 200, 300, 30);
+		addressTxt.setBounds(250, 250, 300, 30);
 		mainUtilityPanel.add(addressTxt);
 		
 		//JLabel genderLabel = new JLabel("Last Name:");
 		JTextField durationTxt = new JTextField("Duration");
-		durationTxt.setBounds(250, 250, 300, 30);
+		durationTxt.setBounds(250, 300, 300, 30);
 		mainUtilityPanel.add(durationTxt);
 		
         JDateChooser eventDate =  new JDateChooser(null, "Date of Event");
-        eventDate.setBounds(250, 300, 300, 30);
+        eventDate.setBounds(250, 350, 300, 30);
         mainUtilityPanel.add(eventDate);
         
 		JTextField eventTime = new JTextField("Time Of Event");
-		eventTime.setBounds(250, 350, 300, 30);
+		eventTime.setBounds(250, 400, 300, 30);
 		mainUtilityPanel.add(eventTime);
 		
 		String status[] = {"--Status--","Active","Pending"};
 		JComboBox<String> statusCombo = new JComboBox<String>(status);
 		statusCombo.setSelectedIndex(0);
-		statusCombo.setBounds(250, 400, 300, 30);
+		statusCombo.setBounds(250, 450, 300, 30);
 		mainUtilityPanel.add(statusCombo);
 		
 		JButton submit = new JButton("ADD EVENT");
-		submit.setBounds(250, 450, 300, 30);
+		submit.setBounds(250, 500, 300, 30);
 		submit.setBackground(new Color(128, 128, 255));
+		
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String status = statusCombo.getSelectedItem().toString();
+				Event event = new Event(eventIdTxt.getText(), eventNameTxt.getText(), addressTxt.getText(),Integer.parseInt(durationTxt.getText()), eventDate.getDate(), eventTime.getText(), status);
+				Client cliObj = new Client();
+				cliObj.sendAction("add event");
+				cliObj.sendEvent(event);
+				
+			}
+			
+		});
 		
 		mainUtilityPanel.add(submit);
 		

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import domain.Customer;
 import domain.Equipment;
+import domain.Event;
 import domain.Rent;
 
 public class Client {
@@ -70,6 +71,16 @@ public class Client {
 	public void sendCustomer(Customer cus) {
 		try {
 			os.writeObject(cus);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void sendEvent(Event obj) {
+		try {
+			os.writeObject(obj);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

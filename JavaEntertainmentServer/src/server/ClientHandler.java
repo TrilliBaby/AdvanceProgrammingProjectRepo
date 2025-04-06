@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import domain.Customer;
 import domain.Employee;
 import domain.Equipment;
+import domain.Event;
 import domain.Rent;
 
 public class ClientHandler extends Thread {
@@ -115,12 +116,12 @@ public class ClientHandler extends Thread {
     }
 
     private void addCustomerToDb(Customer cus) {
-        String sql = "INSERT INTO CUSTOMER (custID, name, dOB, age, address, email, phoneNumber, gender) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO CUSTOMER (cusID, name, dOB, age, address, email, phoneNumber, gender) VALUES(?,?,?,?,?,?,?,?)";
         try {
             stat = mycon.prepareStatement(sql);
             stat.setString(1, cus.getCusID());
             stat.setString(2, cus.getName());
-            stat.setDate(3, java.sql.Date.valueOf(cus.getdOB()));
+            stat.setDate(3, new java.sql.Date(cus.getdOB().getTime()));
             stat.setInt(4, cus.getAge());
             stat.setString(5, cus.getAddress());
             stat.setString(6, cus.getEmail());
@@ -319,6 +320,37 @@ public class ClientHandler extends Thread {
     	return list;
     }
     
+    private void addEventToDb(Event obj) {
+    	String sql = "INSERT INTO event VALUES(?,?,?,?,?,?,?)";
+    	try {
+			stat = mycon.prepareStatement(sql);
+			stat.setString(1, obj.getEID());
+			stat.setString(2, obj.getName());
+			stat.setString(3, obj.getAddress());
+			stat.setInt(4, obj.getDuration());
+			stat.setDate(5, new java.sql.Date(obj.getEventDate().getTime()));
+			stat.setTime(6, java.sql.Time.valueOf(obj.getEventTime()));
+			stat.setString(7, obj.getStatus());
+			
+			int rowsAdded = stat.executeUpdate();
+            if (rowsAdded > 0) {
+                System.out.println("Event added successfully.");
+                try {
+					os.writeObject("Event added successfully.");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+            }
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
+    
    
 
     @Override
@@ -347,6 +379,10 @@ public class ClientHandler extends Thread {
                 case "search UserName":
                 	String user = (String) is.readObject();
                 	os.writeObject(searchUserName(user));
+                	break;
+                case "add event":
+                	Event event = (Event) is.readObject();
+                	addEventToDb(event);
                 	break;
                 default:
                     System.out.println("Unknown action: " + action);

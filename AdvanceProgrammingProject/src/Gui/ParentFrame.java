@@ -25,6 +25,7 @@ public class ParentFrame extends JFrame{
 	private CustomerView cusViewObj;
 	private RentsView rentsViewObj;
 	private EquipmentView equipViewObj;
+	private DashboardView dashboard;
 	
 	private JDesktopPane desktop;
 	private JMenuItem customer;
@@ -55,6 +56,7 @@ public class ParentFrame extends JFrame{
 		rentsItem = new JMenuItem("Renting");
 		rentsViewObj = new RentsView();
 		equipViewObj = new EquipmentView();
+		dashboard = new DashboardView();
 		
 		
 	}
@@ -85,7 +87,7 @@ public class ParentFrame extends JFrame{
 	
 	public void setProperties() {
 		this.setJMenuBar(menubar);
-		this.setSize(1020, 700);
+		this.setSize(1177, 800);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -166,6 +168,7 @@ public class ParentFrame extends JFrame{
 				if(user && passw == true) {
 					loginVal = 1;
 					desktop.removeAll();
+					desktop.add(dashboard);
 				}else {
 					JOptionPane.showMessageDialog(loginViewObj, "Incorrect user name or password", "password authentication", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -174,6 +177,8 @@ public class ParentFrame extends JFrame{
 			}
 			
 		});
+		
+		/*
 		
 		cusViewObj.getAddBtn().addActionListener(new ActionListener() {
 
@@ -195,7 +200,7 @@ public class ParentFrame extends JFrame{
 					
 			}
 				
-		});
+		});*/
 		
 		equipViewObj.getAddBtn().addActionListener(new ActionListener() {
 
