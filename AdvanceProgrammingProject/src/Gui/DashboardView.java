@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.toedter.calendar.JCalendar;
+
 public class DashboardView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +31,9 @@ public class DashboardView extends JFrame {
 
 		// Setup menu bar
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setForeground(new Color(255, 255, 255));
+		menuBar.setBackground(new Color(128, 128, 255));
+		menuBar.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
 		setJMenuBar(menuBar);
 
 		JMenuItem menuHome = new JMenuItem("Home");
@@ -36,6 +41,7 @@ public class DashboardView extends JFrame {
 		JMenuItem menuEquipment = new JMenuItem("Manage Equipment");
 		JMenuItem menuEvent = new JMenuItem("Event Registry");
 		JMenuItem menuReport = new JMenuItem("Generate Report");
+		
 
 		menuBar.add(menuHome);
 		menuBar.add(menuCustomer);
@@ -46,15 +52,17 @@ public class DashboardView extends JFrame {
 		// CardLayout setup
 		cardLayout = new CardLayout();
 		mainPanel = new JPanel(cardLayout);
+		mainPanel.setBackground(new Color(240, 240, 240));
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
 
 		// Panels for each section
-		JPanel homePanel = createPanel("Welcome to Home Panel", Color.LIGHT_GRAY);
+		JPanel homePanel = homePanelLayout("Welcome to Home Panel", Color.LIGHT_GRAY);
+		homePanel.setLayout(null);
 		
-		JPanel customerPanel = createPanel("Manage Customers Here", Color.PINK);
-		JPanel equipmentPanel = createPanel("Equipment Management", Color.CYAN);
-		JPanel eventPanel = createPanel("Event Registry Panel", Color.ORANGE);
-		JPanel reportPanel = createPanel("Generate Reports", Color.GREEN);
+		JPanel customerPanel = customerPanelLayout();
+		JPanel equipmentPanel = equipmentPanelLayout();
+		JPanel eventPanel = eventPanelLayout();
+		JPanel reportPanel = reportPanelLayout();
 
 		// Add panels to main container
 		mainPanel.add(homePanel, "home");
@@ -76,16 +84,121 @@ public class DashboardView extends JFrame {
 	}
 
 	// Utility method to create simple panels with color and label
-	private JPanel createPanel(String labelText, Color bgColor) {
-		JPanel panel = new JPanel();
-		panel.setBackground(bgColor);
-		panel.setLayout(new BorderLayout());
+	private JPanel homePanelLayout(String labelText, Color bgColor) {
+		JPanel mainUtilityPanel = new JPanel();
+		mainUtilityPanel.setBackground(new Color(255, 255, 255));
+		mainUtilityPanel.setLayout(null);
 
 		JLabel label = new JLabel(labelText, SwingConstants.CENTER);
+		label.setBounds(0, 0, 0, 0);
 		label.setFont(new Font("Arial", Font.BOLD, 24));
-		panel.add(label, BorderLayout.CENTER);
+		mainUtilityPanel.add(label);
+		
+		JPanel display1Panel = new JPanel();
+		display1Panel.setBackground(new Color(128, 128, 255));
+		display1Panel.setBounds(40, 229, 222, 167);
+		mainUtilityPanel.add(display1Panel);
+		display1Panel.setLayout(null);
+		
+		JPanel welcomeBackPanel = new JPanel();
+		welcomeBackPanel.setBackground(new Color(244, 244, 255));
+		welcomeBackPanel.setBounds(40, 38, 740, 155);
+		mainUtilityPanel.add(welcomeBackPanel);
+		welcomeBackPanel.setLayout(null);
+		
+		JButton welcomeButton = new JButton("New button");
+		welcomeButton.setBounds(27, 110, 85, 21);
+		welcomeBackPanel.add(welcomeButton);
+		
+		JLabel welcomeLabel = new JLabel("WELCOME BACK");
+		welcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		welcomeLabel.setBounds(27, 20, 387, 51);
+		welcomeBackPanel.add(welcomeLabel);
+		
+		JLabel welcomeTextLabel = new JLabel("WELCOME BACK");
+		welcomeTextLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		welcomeTextLabel.setBounds(27, 67, 387, 51);
+		welcomeBackPanel.add(welcomeTextLabel);
+		
+		JScrollPane recentEquipmentSchedulePanel = new JScrollPane();
+		recentEquipmentSchedulePanel.setBounds(40, 459, 740, 228);
+		mainUtilityPanel.add(recentEquipmentSchedulePanel);
+		
+		JPanel utilityPanel = new JPanel();
+		utilityPanel.setBackground(new Color(244, 244, 255));
+		utilityPanel.setBounds(816, 0, 347, 735);
+		mainUtilityPanel.add(utilityPanel);
+		utilityPanel.setLayout(null);
+		JCalendar calendar = new JCalendar();
+		calendar.setWeekdayForeground(new Color(255, 255, 255));
+		calendar.setDecorationBackgroundColor(new Color(151, 151, 255));
+		calendar.setBounds(26, 30, 304, 246);
+		utilityPanel.add(calendar);
+		
+		JPanel display2Panel = new JPanel();
+		display2Panel.setBackground(new Color(128, 128, 255));
+		display2Panel.setBounds(301, 229, 222, 167);
+		mainUtilityPanel.add(display2Panel);
+		display2Panel.setLayout(null);
+		
+		JPanel display3Panel = new JPanel();
+		display3Panel.setBackground(new Color(128, 128, 255));
+		display3Panel.setBounds(558, 229, 222, 167);
+		mainUtilityPanel.add(display3Panel);
+		display3Panel.setLayout(null);
+		
+		JLabel lblRecentEquipmentSchedule = new JLabel("Recent Equipment Schedule ");
+		lblRecentEquipmentSchedule.setBounds(40, 419, 254, 30);
+		mainUtilityPanel.add(lblRecentEquipmentSchedule);
 
-		return panel;
+		return mainUtilityPanel;
 	}
+	
+	private JPanel customerPanelLayout() {
+		
+		JPanel mainUtilityPanel = new JPanel();
+		mainUtilityPanel.setBackground(new Color(255, 255, 255));
+		mainUtilityPanel.setLayout(null);
+		
+		JPanel display1Panel = new JPanel();
+		display1Panel.setBackground(new Color(128, 128, 255));
+		display1Panel.setBounds(40, 229, 222, 167);
+		mainUtilityPanel.add(display1Panel);
+		display1Panel.setLayout(null);
+		
+		
+		return mainUtilityPanel;
+	}
+	
+	private JPanel equipmentPanelLayout() {
+		JPanel mainUtilityPanel = new JPanel();
+		mainUtilityPanel.setBackground(new Color(255, 255, 255));
+		mainUtilityPanel.setLayout(null);
+
+		JButton button = new JButton();
+		
+		
+		
+		return mainUtilityPanel;
+		
+	}
+	private JPanel eventPanelLayout() {
+		JPanel mainUtilityPanel = new JPanel();
+		mainUtilityPanel.setBackground(new Color(255, 255, 255));
+		mainUtilityPanel.setLayout(null);
+		
+		
+		return mainUtilityPanel;
+		
+	}
+	private JPanel reportPanelLayout() {
+		JPanel mainUtilityPanel = new JPanel();
+		mainUtilityPanel.setBackground(new Color(255, 255, 255));
+		mainUtilityPanel.setLayout(null);
+		
+		return mainUtilityPanel;
+		
+	}
+	
 }
 
