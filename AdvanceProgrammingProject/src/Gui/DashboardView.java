@@ -6,6 +6,7 @@ import javax.swing.*;
 
 
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
 public class DashboardView extends JFrame {
 
@@ -162,12 +163,64 @@ public class DashboardView extends JFrame {
 		JPanel mainUtilityPanel = new JPanel();
 		mainUtilityPanel.setBackground(new Color(255, 255, 255));
 		mainUtilityPanel.setLayout(null);
+
 		
 		JPanel display1Panel = new JPanel();
 		display1Panel.setBackground(new Color(128, 128, 255));
-		display1Panel.setBounds(40, 229, 222, 167);
-		mainUtilityPanel.add(display1Panel);
+		display1Panel.setBounds(600, 128, 400, 400);
 		display1Panel.setLayout(null);
+		mainUtilityPanel.add(display1Panel);
+		
+		JLabel customerRegistryLabel = new JLabel("Customer Registry");
+		customerRegistryLabel.setBounds(250, 100, 300, 50);
+		mainUtilityPanel.add(customerRegistryLabel);
+
+		
+		JLabel firstNameLabel = new JLabel("First Name:");
+		JTextField firstNameTxt = new JTextField("First Name");
+		firstNameTxt.setBounds(250, 150, 300, 30);
+		mainUtilityPanel.add(firstNameTxt);
+		
+		JLabel lastNameLabel = new JLabel("Last Name:");
+		JTextField lastNameTxt = new JTextField("Last Name");
+		lastNameTxt.setBounds(250, 200, 300, 30);
+		mainUtilityPanel.add(lastNameTxt);
+		
+		JLabel genderLabel = new JLabel("Last Name:");
+		JTextField genderTxt = new JTextField("Gender");
+		genderTxt.setBounds(250, 250, 300, 30);
+		mainUtilityPanel.add(genderTxt);
+		
+        JDateChooser calendar =  new JDateChooser();
+        calendar.setBounds(250, 300, 300, 30);
+        mainUtilityPanel.add(calendar);
+        
+		JTextField phoneNumberTxt = new JTextField("Phone Number");
+		phoneNumberTxt.setBounds(250, 350, 300, 30);
+		mainUtilityPanel.add(phoneNumberTxt);
+		
+		JTextField addressTxt = new JTextField("Address");
+		addressTxt.setBounds(250, 400, 300, 30);
+		mainUtilityPanel.add(addressTxt);
+		
+		JTextField emailTxt = new JTextField("Email");
+		emailTxt.setBounds(250, 450, 300, 30);
+		mainUtilityPanel.add(emailTxt);
+		
+		
+		
+        /*"\n  Age = " + age +
+        "\n  Date of Birth = " + dOB +
+        "\n  Phone Number = " + phoneNumber +
+        "\n  Email = " + email +
+        "\n  Address = " + address;
+*/
+		
+		JButton submit = new JButton("ADD CUSTOMER");
+		submit.setBounds(250, 500, 300, 30);
+		submit.setBackground(new Color(128, 128, 255));
+		
+		mainUtilityPanel.add(submit);
 		
 		
 		return mainUtilityPanel;
