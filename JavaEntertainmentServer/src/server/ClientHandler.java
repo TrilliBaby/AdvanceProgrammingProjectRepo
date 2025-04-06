@@ -292,20 +292,31 @@ public class ClientHandler extends Thread {
         }
     }
     
-    private void reportForRents(String cusId) {
+    private ArrayList<Rent> invoiceForCustomers(String cusId) {
     	String sql = "SELECT * FROM RENTS WHERE customerId = ?";
+    	ArrayList<Rent> list = new ArrayList<>();
+    	
     	try {
 			stat = mycon.prepareStatement(sql);
 			stat.setString(1, cusId);
 			ResultSet rs = stat.executeQuery();
 			
 			while(rs.next()) {
+				Rent rent = new Rent();
+				String equip = rs.getString(2);
+				double amount = rs.getDouble(3);
+				
+				rent = new Rent(amount, equip);
+				
+				list.add(rent);
 				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	return list;
     }
     
    

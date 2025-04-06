@@ -3,32 +3,26 @@ package domain;
 import java.io.Serializable;
 
 public class Rent implements Serializable{
-	
-	private String rentId;
 	private String customerId; 
     private String equipmentId;
-	private float amountOwed;
+	private double amountOwed;
 	private float amountPaid; 
 	private int duration;
-	private String status;
 
 	public Rent()
 	{
-		rentId = "";
+		customerId = "";
+		equipmentId = "";
 		amountOwed = 0;
 		amountPaid = 0; 
 		duration = 0;
-		status = "";
 	}
 	
-	public Rent(String customerId, String equipmentId, int duration)
+	public Rent(double amount, String equipmentId)
 	{
-		this.customerId = customerId;
-        this.equipmentId = equipmentId;
-		this.amountOwed = amountOwed;
-		this.amountPaid = amountPaid; 
-		this.duration = duration;
-		this.status = status;
+		this.amountOwed = amount;
+		this.equipmentId = equipmentId;
+	
 	}
 	
 	public Rent(Rent r)
@@ -36,23 +30,11 @@ public class Rent implements Serializable{
 		if (r == null) {
             throw new IllegalArgumentException("Rent object cannot be null");
         }
-		this.rentId = r.rentId;
 		this.amountOwed = r.amountOwed;
 		this.amountPaid = r.amountPaid; 
 		this.duration = r.duration;
-		this.status = r.status;
 	}
 	
-	public String getRentId() {
-		return rentId;
-	}
-	
-	public void setRentId(String rentId) {
-		if (rentId == null || rentId.trim().isEmpty()) {
-            throw new IllegalArgumentException("Rent ID cannot be empty");
-        }
-		this.rentId = rentId;
-	}
 	
 	public String getCustomerId() {
         return customerId;
@@ -76,7 +58,7 @@ public class Rent implements Serializable{
         this.equipmentId = equipmentId;
     }
 	
-	public float getAmountOwed() {
+	public double getAmountOwed() {
 		return amountOwed;
 	}
 	
@@ -108,24 +90,12 @@ public class Rent implements Serializable{
 		this.duration = duration;
 	}
 	
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		if (status == null || status.trim().isEmpty()) {
-            throw new IllegalArgumentException("There must be a status");
-        }
-		this.status = status;
-	}
 
 	@Override
 	public String toString() {
-		return "Rent ID = " + rentId +
-				"\nRent = " + amountOwed +
+		return "Rent = " + amountOwed +
 				"\nAmount Paid = " + amountPaid +
-				"\nDuration = " + duration +
-				"\nStatus = " + status;
+				"\nDuration = " + duration;
 		
 	}
 	
