@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 import com.toedter.calendar.JCalendar;
 
 public class DashboardView extends JFrame {
@@ -12,6 +13,7 @@ public class DashboardView extends JFrame {
 
 	private CardLayout cardLayout;
 	private JPanel mainPanel;
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
@@ -25,9 +27,10 @@ public class DashboardView extends JFrame {
 	}
 
 	public DashboardView() {
+		setVisible(true);
 		setTitle("Dashboard");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1177, 800); // Adjusted height for better fit
+		setBounds(0, 0, 1177, 800); // Adjusted height for better fit
 
 		// Setup menu bar
 		JMenuBar menuBar = new JMenuBar();
