@@ -85,7 +85,7 @@ public class ParentFrame extends JFrame{
 	
 	public void setProperties() {
 		this.setJMenuBar(menubar);
-		this.setSize(1020, 700);
+		this.setSize(1200, 800);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -166,6 +166,7 @@ public class ParentFrame extends JFrame{
 				if(user && passw == true) {
 					loginVal = 1;
 					desktop.removeAll();
+					desktop.add(new DashboardView());
 				}else {
 					JOptionPane.showMessageDialog(loginViewObj, "Incorrect user name or password", "password authentication", JOptionPane.INFORMATION_MESSAGE);
 				}
