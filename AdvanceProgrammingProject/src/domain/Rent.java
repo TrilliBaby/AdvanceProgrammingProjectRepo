@@ -7,8 +7,8 @@ public class Rent implements Serializable{
 	private String rentId;
 	private String customerId; 
     private String equipmentId;
-	private float amountOwed;
-	private float amountPaid; 
+	private double amountOwed;
+	private double amountPaid; 
 	private int duration;
 	private String status;
 
@@ -21,14 +21,19 @@ public class Rent implements Serializable{
 		status = "";
 	}
 	
-	public Rent(String customerId, String equipmentId, int duration)
+	public Rent(String customerId, String equipmentId, double amountOwed, double amountPaid, int duration)
 	{
 		this.customerId = customerId;
         this.equipmentId = equipmentId;
-		this.amountOwed = amountOwed;
+        this.amountOwed = amountOwed;
 		this.amountPaid = amountPaid; 
 		this.duration = duration;
-		this.status = status;
+	}
+	
+	public Rent(String customerId,double amountOwed)
+	{
+		this.customerId = customerId;
+        this.amountOwed = amountOwed;
 	}
 	
 	public Rent(Rent r)
@@ -76,7 +81,7 @@ public class Rent implements Serializable{
         this.equipmentId = equipmentId;
     }
 	
-	public float getAmountOwed() {
+	public double getAmountOwed() {
 		return amountOwed;
 	}
 	
@@ -89,11 +94,11 @@ public class Rent implements Serializable{
 	
 
 	
-	public float getAmountPaid() {
+	public double getAmountPaid() {
 		return amountPaid;
 	}
 	
-	public void setAmountPaid(float amountPaid) {
+	public void setAmountPaid(double amountPaid) {
 		if (amountPaid < 0) {
             throw new IllegalArgumentException("Amount paid cannot be negative");
         }

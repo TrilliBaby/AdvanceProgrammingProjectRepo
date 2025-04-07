@@ -68,6 +68,15 @@ public class Client {
 		
 	}
 	
+	public void sendCustId(String cusId) {
+		try {
+			os.writeObject(cusId);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void sendCustomer(Customer cus) {
 		try {
 			os.writeObject(cus);

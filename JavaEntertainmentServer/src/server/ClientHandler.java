@@ -272,7 +272,7 @@ public class ClientHandler extends Thread {
             stat.setDouble(3, totalAmount);
             stat.setDate(4, new java.sql.Date(date.getTime())); 
             //stat.setDouble(6, cost);
-            stat.setDouble(5, 100);
+            stat.setDouble(5, rent.getAmountPaid());
             stat.setInt(6, rent.getDuration()); 
        
             
@@ -307,7 +307,7 @@ public class ClientHandler extends Thread {
 				String equip = rs.getString(2);
 				double amount = rs.getDouble(3);
 				
-				rent = new Rent(amount, equip);
+				rent = new Rent(equip,amount);
 				
 				list.add(rent);
 				
@@ -383,6 +383,10 @@ public class ClientHandler extends Thread {
                 case "add event":
                 	Event event = (Event) is.readObject();
                 	addEventToDb(event);
+                	break;
+                case "generate invoice":
+                	String cusId = (String) is.readObject();
+                	os.writeObject(invoiceForCustomers(cusId));
                 	break;
                 default:
                     System.out.println("Unknown action: " + action);

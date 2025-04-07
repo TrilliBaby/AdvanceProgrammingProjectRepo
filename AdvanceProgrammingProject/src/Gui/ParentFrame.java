@@ -220,10 +220,10 @@ public class ParentFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Rent rent = new Rent(rentsViewObj.getCusIDText().getText(), rentsViewObj.getEquipIDText().getText(), Integer.parseInt(rentsViewObj.getDurationText().getText()));
+				//Rent rent = new Rent(customerIdTxt.getText(), equipmentIdTxt.getText(), Double.parseDouble(amountTxt.getText()), Double.parseDouble(amountPaidTxt.getText()), Integer.parseInt(durationTxt.getText()));
 				Client cliObj = new Client();
 				cliObj.sendAction("add rent");
-				cliObj.sendRent(rent);
+				//cliObj.sendRent(rent);
 				
 			}
 			

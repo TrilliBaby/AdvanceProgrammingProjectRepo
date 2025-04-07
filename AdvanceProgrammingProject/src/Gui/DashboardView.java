@@ -14,6 +14,7 @@ import client.Client;
 import domain.Customer;
 import domain.Equipment;
 import domain.Person;
+import domain.Rent;
 import domain.Event;
 
 public class DashboardView extends JInternalFrame {
@@ -53,6 +54,7 @@ public class DashboardView extends JInternalFrame {
 		JMenuItem menuCustomer = new JMenuItem("Customer Management");
 		JMenuItem menuEquipment = new JMenuItem("Manage Equipment");
 		JMenuItem menuEvent = new JMenuItem("Event Registry");
+		JMenuItem menuSchedule = new JMenuItem("Schedule System");
 		JMenuItem menuReport = new JMenuItem("Generate Report");
 		
 
@@ -61,6 +63,7 @@ public class DashboardView extends JInternalFrame {
 		menuBar.add(menuEquipment);
 		menuBar.add(menuEvent);
 		menuBar.add(menuReport);
+		menuBar.add(menuSchedule);
 
 		// CardLayout setup
 		cardLayout = new CardLayout();
@@ -76,6 +79,7 @@ public class DashboardView extends JInternalFrame {
 		JPanel equipmentPanel = equipmentPanelLayout();
 		JPanel eventPanel = eventPanelLayout();
 		JPanel reportPanel = reportPanelLayout();
+		JPanel schedulePanel = schedulePanelLayout();
 
 		// Add panels to main container
 		mainPanel.add(homePanel, "home");
@@ -83,6 +87,7 @@ public class DashboardView extends JInternalFrame {
 		mainPanel.add(equipmentPanel, "equipment");
 		mainPanel.add(eventPanel, "event");
 		mainPanel.add(reportPanel, "report");
+		mainPanel.add(schedulePanel, "schedule");
 
 		// Menu item actions
 		menuHome.addActionListener(e -> cardLayout.show(mainPanel, "home"));
@@ -91,6 +96,7 @@ public class DashboardView extends JInternalFrame {
 		menuEquipment.addActionListener(e -> cardLayout.show(mainPanel, "equipment"));
 		menuEvent.addActionListener(e -> cardLayout.show(mainPanel, "event"));
 		menuReport.addActionListener(e -> cardLayout.show(mainPanel, "report"));
+		menuSchedule.addActionListener(e -> cardLayout.show(mainPanel, "schedule"));
 
 		// Show home panel initially
 		cardLayout.show(mainPanel, "home");
@@ -417,8 +423,115 @@ public class DashboardView extends JInternalFrame {
 		mainUtilityPanel.setBackground(new Color(255, 255, 255));
 		mainUtilityPanel.setLayout(null);
 		
+		JPanel display1Panel = new JPanel();
+		display1Panel.setBackground(new Color(128, 128, 255));
+		display1Panel.setBounds(500, 100, 500, 500);
+		display1Panel.setLayout(null);
+		mainUtilityPanel.add(display1Panel);
+		
+		JLabel reportLbl= new JLabel("Generate Report");
+		reportLbl.setBounds(100, 100, 100, 30);
+		
+mainUtilityPanel.add(reportLbl);
+		
+		JTextField customerId = new JTextField("Enter Customer ID");
+		customerId.setBounds(100,150,200,30);
+		mainUtilityPanel.add(customerId);
+		
+		JButton generate = new JButton("GENERATE REPORT");
+		generate.setBounds(100, 250, 200, 30);
+		
+		
+		mainUtilityPanel.add(generate);
+		generate.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Client cliObj = new Client();
+				cliObj.sendAction("generate invoice");
+				cliObj.sendCustId(customerId.getText());
+				
+			}});
+		
+		
+		
 		return mainUtilityPanel;
+
+
 		
 	}
+	
+	private JPanel schedulePanelLayout() {
+		JPanel mainUtilityPanel = new JPanel();
+		mainUtilityPanel.setBackground(new Color(255, 255, 255));
+		mainUtilityPanel.setLayout(null);
+		
+		JPanel display1Panel = new JPanel();
+		display1Panel.setBackground(new Color(128, 128, 255));
+		display1Panel.setBounds(600, 128, 400, 400);
+		display1Panel.setLayout(null);
+		mainUtilityPanel.add(display1Panel);
+		
+		JButton update =new JButton("UPDATE");
+		update.setBounds(20, 350, 150, 30);
+		update.setBackground(Color.WHITE);
+		display1Panel.add(update);
+		
+		JButton delete =new JButton("DELETE");
+		delete.setBounds(230, 350, 150, 30);
+		delete.setBackground(Color.WHITE);
+		display1Panel.add(delete);
+		
+		JLabel scheduleSystemLabel = new JLabel("Schedule System");
+		scheduleSystemLabel.setBounds(250, 100, 300, 50);
+		mainUtilityPanel.add(scheduleSystemLabel);
+		
+		//JLabel equipmentIdLabel = new JLabel("Equipment Id");
+		JTextField customerIdTxt = new JTextField("Customer Id");
+		customerIdTxt.setBounds(250, 150, 300, 30);
+		mainUtilityPanel.add(customerIdTxt);
+		
+		//JLabel lastNameLabel = new JLabel("Last Name:");
+		JTextField equipmentIdTxt = new JTextField("Equipment Id");
+
+		equipmentIdTxt.setBounds(250, 200, 300, 30);
+		mainUtilityPanel.add(equipmentIdTxt);
+		
+		JTextField amountTxt = new JTextField("Amount");
+		amountTxt.setBounds(250, 250, 300, 30);
+		mainUtilityPanel.add(amountTxt);
+		
+        
+		JTextField amountPaidTxt = new JTextField("Amount Paid");
+		amountPaidTxt.setBounds(250, 350, 300, 30);
+		mainUtilityPanel.add(amountPaidTxt);
+		
+		JTextField durationTxt = new JTextField("Duration");
+		durationTxt.setBounds(250, 400, 300, 30);
+
+mainUtilityPanel.add(durationTxt);
+		
+		
+		JButton submit = new JButton("ADD TO SCHEDULE");
+		submit.setBounds(250, 450, 300, 30);
+		submit.setBackground(new Color(128, 128, 255));
+		
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Rent rent = new Rent(customerIdTxt.getText(), equipmentIdTxt.getText(), Double.parseDouble(amountTxt.getText()), Double.parseDouble(amountPaidTxt.getText()), Integer.parseInt(durationTxt.getText()));
+				Client cliObj = new Client();
+				cliObj.sendAction("add rent");
+				cliObj.sendRent(rent);				
+			}
+			
+		});
+		
+		mainUtilityPanel.add(submit);
+return mainUtilityPanel;
+		
+	}
+
 	
 }
