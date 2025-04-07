@@ -21,7 +21,7 @@ public class EventScheduleSystem {
     
 	 private JFrame frame;
 	    private JPanel panel;
-	    private JTextField eventNameField, dateField, timeField, addressField, durationField, statusField;
+	    private JTextField eventIdField, eventNameField, dateField, timeField, addressField, durationField, statusField;
 	    private JTextArea outputArea;
 
 	    public EventScheduleSystem() {
@@ -42,37 +42,45 @@ public class EventScheduleSystem {
 	    }
 
 	    private void initializeComponents(GridBagConstraints gbc) {
-	        gbc.gridx = 0; gbc.gridy = 0;
+	        
+	    	gbc.gridx = 0; gbc.gridy = 0;
+	        panel.add(new JLabel("Event ID:"), gbc);
+	        eventIdField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(eventIdField, gbc);
+
+	    	
+	    	gbc.gridx = 0; gbc.gridy = 1;
 	        panel.add(new JLabel("Event Name:"), gbc);
 	        eventNameField = new JTextField(20);
 	        gbc.gridx = 1;
 	        panel.add(eventNameField, gbc);
 
-	        gbc.gridx = 0; gbc.gridy = 1;
+	        gbc.gridx = 0; gbc.gridy = 2;
 	        panel.add(new JLabel("Date (YYYY-MM-DD):"), gbc);
 	        dateField = new JTextField(20);
 	        gbc.gridx = 1;
 	        panel.add(dateField, gbc);
 
-	        gbc.gridx = 0; gbc.gridy = 2;
-	        panel.add(new JLabel("Time (HH:MM:SS):"), gbc);
+	        gbc.gridx = 0; gbc.gridy = 3;
+	        panel.add(new JLabel("Time (HH:MM):"), gbc);
 	        timeField = new JTextField(20);
 	        gbc.gridx = 1;
 	        panel.add(timeField, gbc);
 
-	        gbc.gridx = 0; gbc.gridy = 3;
+	        gbc.gridx = 0; gbc.gridy = 4;
 	        panel.add(new JLabel("Address:"), gbc);
 	        addressField = new JTextField(20);
 	        gbc.gridx = 1;
 	        panel.add(addressField, gbc);
 
-	        gbc.gridx = 0; gbc.gridy = 4;
+	        gbc.gridx = 0; gbc.gridy = 5;
 	        panel.add(new JLabel("Duration (in hours):"), gbc);
 	        durationField = new JTextField(20);
 	        gbc.gridx = 1;
 	        panel.add(durationField, gbc);
 
-	        gbc.gridx = 0; gbc.gridy = 5;
+	        gbc.gridx = 0; gbc.gridy = 6;
 	        panel.add(new JLabel("Status:"), gbc);
 	        statusField = new JTextField(20);
 	        gbc.gridx = 1;
@@ -80,17 +88,18 @@ public class EventScheduleSystem {
 
 	        outputArea = new JTextArea(10, 30);
 	        outputArea.setEditable(false);
-	        gbc.gridx = 0; gbc.gridy = 6; gbc.gridwidth = 2;
+	        gbc.gridx = 0; gbc.gridy = 7; gbc.gridwidth = 2;
 	        panel.add(new JScrollPane(outputArea), gbc);
 	        gbc.gridwidth = 1;
 
 	        JButton submitButton = new JButton("Schedule Event");
 	        submitButton.addActionListener(new SubmitButtonListener());
-	        gbc.gridx = 0; gbc.gridy = 7;
+	        gbc.gridx = 0; gbc.gridy = 8;
 	        panel.add(submitButton, gbc);
 
 	        JButton clearButton = new JButton("Clear");
 	        clearButton.addActionListener(e -> {
+	        	eventIdField.setText("");
 	            eventNameField.setText("");
 	            dateField.setText("");
 	            timeField.setText("");
@@ -106,6 +115,7 @@ public class EventScheduleSystem {
 	    private class SubmitButtonListener implements ActionListener {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
+	        	String eventId = eventIdField.getText().trim();
 	            String eventName = eventNameField.getText().trim();
 	            String date = dateField.getText().trim();
 	            String time = timeField.getText().trim();
@@ -113,7 +123,7 @@ public class EventScheduleSystem {
 	            String duration = durationField.getText().trim();
 	            String status = statusField.getText().trim();
 
-	            if (eventName.isEmpty() || date.isEmpty() || time.isEmpty() ||
+	            if (eventId.isEmpty() || eventName.isEmpty() || date.isEmpty() || time.isEmpty() ||
 	                address.isEmpty() || duration.isEmpty() || status.isEmpty()) {
 	                outputArea.setText("⚠️ Please fill in all fields.");
 	                return;
@@ -122,12 +132,14 @@ public class EventScheduleSystem {
 	            // Simulate saving event
 	            StringBuilder summary = new StringBuilder();
 	            summary.append("✅ Event Scheduled Successfully!\n\n")
-	                   .append("Event Name: ").append(eventName).append("\n")
-	                   .append("Date: ").append(date).append("\n")
-	                   .append("Time: ").append(time).append("\n")
-	                   .append("Address: ").append(address).append("\n")
-	                   .append("Duration: ").append(duration).append(" hours\n")
-	                   .append("Status: ").append(status);
+	            
+			            .append("Event ID: ").append(eventId).append("\n")
+			            .append("Event Name: ").append(eventName).append("\n")
+			            .append("Date: ").append(date).append("\n")
+			            .append("Time: ").append(time).append("\n")
+			            .append("Address: ").append(address).append("\n")
+			            .append("Duration: ").append(duration).append(" hours\n")
+			            .append("Status: ").append(status);
 
 	            outputArea.setText(summary.toString());
 	        }
