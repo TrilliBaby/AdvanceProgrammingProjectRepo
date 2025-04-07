@@ -1,169 +1,153 @@
 package Gui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import domain.Event;
 
 public class EventScheduleSystem {
-    private JFrame frame;
-    private JPanel panel;
-    private JTextField equipmentNameField, eventNameField, quantityField;
-    private JTextArea outputArea;
-    private JLabel statusLabel;
-    private List<String> scheduledEvents = new ArrayList<>(); // Stores events temporarily
+    
+	 private JFrame frame;
+	    private JPanel panel;
+	    private JTextField eventIdField, eventNameField, dateField, timeField, addressField, durationField, statusField;
+	    private JTextArea outputArea;
 
-    public EventScheduleSystem() {
-        // Initialize the main frame
-        frame = new JFrame("Event Scheduling System");
-        panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+	    public EventScheduleSystem() {
+	        frame = new JFrame("Event Scheduling System");
+	        panel = new JPanel(new GridBagLayout());
+	        GridBagConstraints gbc = new GridBagConstraints();
+	        gbc.fill = GridBagConstraints.HORIZONTAL;
+	        gbc.insets = new Insets(5, 5, 5, 5);
+	        panel.setBackground(new Color(240, 248, 255));
 
-        // Set default constraints
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 5, 5, 5); // Padding
+	        initializeComponents(gbc);
 
-        // Color theme
-        panel.setBackground(new Color(240, 248, 255)); // Light blue background
+	        frame.add(panel);
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.pack();
+	        frame.setVisible(true);
+	        frame.setLocationRelativeTo(null);
+	    }
 
-        // Create and add components to the panel
-        initializeComponents(gbc);
+	    private void initializeComponents(GridBagConstraints gbc) {
+	        
+	    	gbc.gridx = 0; gbc.gridy = 0;
+	        panel.add(new JLabel("Event ID:"), gbc);
+	        eventIdField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(eventIdField, gbc);
 
-        // Set up the frame
-        frame.add(panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null); // Centers the window
-    }
+	    	
+	    	gbc.gridx = 0; gbc.gridy = 1;
+	        panel.add(new JLabel("Event Name:"), gbc);
+	        eventNameField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(eventNameField, gbc);
 
-    private void initializeComponents(GridBagConstraints gbc) {
-        // Equipment Name Input
-        gbc.gridx = 0; 
-        gbc.gridy = 1;
-        panel.add(new JLabel("Equipment:"), gbc);
+	        gbc.gridx = 0; gbc.gridy = 2;
+	        panel.add(new JLabel("Date (YYYY-MM-DD):"), gbc);
+	        dateField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(dateField, gbc);
 
-        equipmentNameField = new JTextField(20);
-        gbc.gridx = 1;
-        panel.add(equipmentNameField, gbc);
+	        gbc.gridx = 0; gbc.gridy = 3;
+	        panel.add(new JLabel("Time (HH:MM):"), gbc);
+	        timeField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(timeField, gbc);
 
-        // Event Name Input
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        panel.add(new JLabel("Event:"), gbc);
+	        gbc.gridx = 0; gbc.gridy = 4;
+	        panel.add(new JLabel("Address:"), gbc);
+	        addressField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(addressField, gbc);
 
-        eventNameField = new JTextField(20);
-        eventNameField.setToolTipText("Enter the name of the event");
-        gbc.gridx = 1;
-        panel.add(eventNameField, gbc);
+	        gbc.gridx = 0; gbc.gridy = 5;
+	        panel.add(new JLabel("Duration (in hours):"), gbc);
+	        durationField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(durationField, gbc);
 
-        // Quantity Input
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        panel.add(new JLabel("Quantity:"), gbc);
+	        gbc.gridx = 0; gbc.gridy = 6;
+	        panel.add(new JLabel("Status:"), gbc);
+	        statusField = new JTextField(20);
+	        gbc.gridx = 1;
+	        panel.add(statusField, gbc);
 
-        quantityField = new JTextField(20);
-        quantityField.setToolTipText("Enter the quantity of equipment");
-        gbc.gridx = 1;
-        panel.add(quantityField, gbc);
+	        outputArea = new JTextArea(10, 30);
+	        outputArea.setEditable(false);
+	        gbc.gridx = 0; gbc.gridy = 7; gbc.gridwidth = 2;
+	        panel.add(new JScrollPane(outputArea), gbc);
+	        gbc.gridwidth = 1;
 
-        // Status Label
-        statusLabel = new JLabel("Fill out the details and submit.");
-        statusLabel.setForeground(Color.BLUE);
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        panel.add(statusLabel, gbc);
+	        JButton submitButton = new JButton("Schedule Event");
+	        submitButton.addActionListener(new SubmitButtonListener());
+	        gbc.gridx = 0; gbc.gridy = 8;
+	        panel.add(submitButton, gbc);
 
-        // Output Area
-        outputArea = new JTextArea(10, 30);
-        outputArea.setEditable(false);
-        outputArea.setBackground(new Color(255, 255, 255));
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        gbc.gridwidth = 2;
-        panel.add(new JScrollPane(outputArea), gbc);
-        gbc.gridwidth = 1;
+	        JButton clearButton = new JButton("Clear");
+	        clearButton.addActionListener(e -> {
+	        	eventIdField.setText("");
+	            eventNameField.setText("");
+	            dateField.setText("");
+	            timeField.setText("");
+	            addressField.setText("");
+	            durationField.setText("");
+	            statusField.setText("");
+	            outputArea.setText("");
+	        });
+	        gbc.gridx = 1;
+	        panel.add(clearButton, gbc);
+	    }
 
-        // Submit Button
-        JButton submitButton = new JButton("Submit");
-        submitButton.setToolTipText("Submit the event details");
-        submitButton.addActionListener(new SubmitButtonListener());
-        gbc.gridx = 0;
-        gbc.gridy = 6;
-        panel.add(submitButton, gbc);
+	    private class SubmitButtonListener implements ActionListener {
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	        	String eId = eventIdField.getText().trim();
+	            String eventName = eventNameField.getText().trim();
+	            String date = dateField.getText().trim();
+	            String time = timeField.getText().trim();
+	            String address = addressField.getText().trim();
+	            String duration = durationField.getText().trim();
+	            String status = statusField.getText().trim();
 
-        // Clear Button
-        JButton clearButton = new JButton("Clear");
-        clearButton.setToolTipText("Clear all input fields");
-        clearButton.addActionListener(new ClearButtonListener());
-        gbc.gridx = 1;
-        panel.add(clearButton, gbc);
-    }
+	            if (eId.isEmpty() || eventName.isEmpty() || date.isEmpty() || time.isEmpty() ||
+	                address.isEmpty() || duration.isEmpty() || status.isEmpty()) {
+	                outputArea.setText("⚠️ Please fill in all fields.");
+	                return;
+	            }
 
-    // Action Listener for Submit Button
-    private class SubmitButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String equipmentName = equipmentNameField.getText().trim();
-            String eventName = eventNameField.getText().trim();
-            String quantity = quantityField.getText().trim();
+	            // Simulate saving event
+	            StringBuilder summary = new StringBuilder();
+	            summary.append("✅ Event Scheduled Successfully!\n\n")
+	            
+			            .append("Event ID: ").append(eId).append("\n")
+			            .append("Event Name: ").append(eventName).append("\n")
+			            .append("Date: ").append(date).append("\n")
+			            .append("Time: ").append(time).append("\n")
+			            .append("Address: ").append(address).append("\n")
+			            .append("Duration: ").append(duration).append(" hours\n")
+			            .append("Status: ").append(status);
 
-            // Input validation
-            if (equipmentName.isEmpty() || eventName.isEmpty() || quantity.isEmpty()) {
-                statusLabel.setText("All fields are required!");
-                statusLabel.setForeground(Color.RED);
-                return;
-            }
+	            outputArea.setText(summary.toString());
+	        }
+	    }
 
-            try {
-                int qty = Integer.parseInt(quantity);
-                if (qty <= 0) throw new NumberFormatException();
+	    public static void main(String[] args) {
+	        SwingUtilities.invokeLater(EventScheduleSystem::new);
+	    }
 
-                // Check if event already exists (Basic double-booking prevention)
-                String eventDetails = eventName + " - " + equipmentName + " (" + qty + ")";
-                if (scheduledEvents.contains(eventDetails)) {
-                    statusLabel.setText("This event is already scheduled!");
-                    statusLabel.setForeground(Color.RED);
-                    return;
-                }
-
-                scheduledEvents.add(eventDetails); // Store the event
-                outputArea.append(eventDetails + "\n");
-                statusLabel.setText("Event Scheduled Successfully!");
-                statusLabel.setForeground(Color.GREEN);
-
-                // Clear fields after successful submission
-                equipmentNameField.setText("");
-                eventNameField.setText("");
-                quantityField.setText("");
-            } catch (NumberFormatException ex) {
-                statusLabel.setText("Quantity must be a valid number!");
-                statusLabel.setForeground(Color.RED);
-            }
-        }
-    }
-
-    // Action Listener for Clear Button
-    private class ClearButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // Clear all input fields
-            equipmentNameField.setText("");
-            eventNameField.setText("");
-            quantityField.setText("");
-            outputArea.setText("");
-
-            // Update the status label
-            statusLabel.setText("Input fields cleared.");
-            statusLabel.setForeground(Color.BLUE);
-        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(EventScheduleSystem::new);
-    }
+    
 }
