@@ -1,3 +1,9 @@
+/*
+Group Members: Brianna Mowatt, Oconnor Burton, Chadrick Atkinson, Gabrielle Flash & Robert Dowe
+Date: April 6, 2025
+Project: Java Entertainment
+*/
+
 package Gui;
 
 import java.awt.GridBagConstraints;
@@ -23,9 +29,14 @@ import client.Client;
 import domain.Customer;
 import domain.Person;
 
+/*
+Customer view is a GUI form that allows users to input and submit information
+*/
 
 //add parent attributes to gui
 public class CustomerView extends JInternalFrame{
+
+	//Labels for form fields
 	private JLabel cusIDLabel;
 	private JLabel phoneLabel;
 	private JLabel genderLabel;
@@ -34,13 +45,17 @@ public class CustomerView extends JInternalFrame{
 	private JLabel dobLabel;
 	private JLabel addressLabel;
 	private JLabel emailLabel;
-	
+
+	//Gender radio buttons
 	private JRadioButton male;
 	private JRadioButton female;
 	private ButtonGroup btngrp;
+
+	//Layout and container
 	private GridBagConstraints gbc;
 	private JPanel panel;
-	
+
+	//Input fields
 	private JTextField cusIDText;
 	private JTextField phoneText;
 	private JTextField nameText;
@@ -48,11 +63,15 @@ public class CustomerView extends JInternalFrame{
 	private JFormattedTextField dob;
 	private JTextField addressText;
 	private JTextField emailText;
-	
+
+	//Date formatting
 	private DateFormat dateFormat;
 	private JDateChooser dateChooser;
-	
+
+	//Button to add a customer
 	private JButton addBtn;
+
+	//Initializes all UI components, input fields and layouts.
 	
 	public void initialize() {
 		dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -94,7 +113,8 @@ public class CustomerView extends JInternalFrame{
 	
 		
 	}
-	
+
+	//Adds the form elements to the panel using GridBagLayout for positioning
 	public void addElementsToPanel() {
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5,5);
@@ -189,18 +209,20 @@ public class CustomerView extends JInternalFrame{
 		gbc.anchor = GridBagConstraints.WEST;
 		panel.add(addBtn, gbc);
 	}
-	
+
+	//Adds the panel (which contains all form components) to the internal frame	
 	public void addPanelToFrame() {
 		this.add(panel);
 	}
-	
+
+	//Sets layout and other display properties of the internal frame.	
 	public void setProperties() {
 		this.setLayout(new GridBagLayout());
 		this.setSize(600,400);
 		this.setVisible(true);
 	}
 	
-	
+	//Getters and Setters
 	public JTextField getCusIDText() {
 		return cusIDText;
 	}
@@ -273,6 +295,7 @@ public class CustomerView extends JInternalFrame{
 		this.addBtn = addBtn;
 	}
 
+	//Constructor that sets up the UI by calling the initialization methods.
 	public CustomerView()
 	{
 		super("Add Customer", true, true, true, true);
