@@ -115,7 +115,7 @@ public class EventScheduleSystem {
 	    private class SubmitButtonListener implements ActionListener {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	        	String eventId = eventIdField.getText().trim();
+	        	String eId = eventIdField.getText().trim();
 	            String eventName = eventNameField.getText().trim();
 	            String date = dateField.getText().trim();
 	            String time = timeField.getText().trim();
@@ -123,7 +123,7 @@ public class EventScheduleSystem {
 	            String duration = durationField.getText().trim();
 	            String status = statusField.getText().trim();
 
-	            if (eventId.isEmpty() || eventName.isEmpty() || date.isEmpty() || time.isEmpty() ||
+	            if (eId.isEmpty() || eventName.isEmpty() || date.isEmpty() || time.isEmpty() ||
 	                address.isEmpty() || duration.isEmpty() || status.isEmpty()) {
 	                outputArea.setText("⚠️ Please fill in all fields.");
 	                return;
@@ -133,7 +133,7 @@ public class EventScheduleSystem {
 	            StringBuilder summary = new StringBuilder();
 	            summary.append("✅ Event Scheduled Successfully!\n\n")
 	            
-			            .append("Event ID: ").append(eventId).append("\n")
+			            .append("Event ID: ").append(eId).append("\n")
 			            .append("Event Name: ").append(eventName).append("\n")
 			            .append("Date: ").append(date).append("\n")
 			            .append("Time: ").append(time).append("\n")
